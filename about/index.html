@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>about — alina schanz</title>
+<meta name="description" content="who i am, how i work, what i use, and how this site is built. no paid posts, no referral links, corrections stay visible.">
+<meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f11" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://alinaschanz.life/about/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="alina schanz">
+<meta property="og:title" content="about — alina schanz">
+<meta property="og:description" content="who i am, how i work, what i use, and how this site is built.">
+<meta property="og:url" content="https://alinaschanz.life/about/">
+<meta property="og:image" content="https://alinaschanz.life/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@alinaschanz">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="alina schanz — notes" href="/feed.xml">
+<link rel="me" href="https://x.com/alinaschanz">
+<link rel="me" href="https://github.com/alinaschanz">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="alina schanz, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="var(--accent)"/><path d="M12 42 L22 28 L30 36 L38 22 L46 30 L52 20" fill="none" stroke="var(--accent-ink)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="52" cy="20" r="4" fill="var(--accent-ink)"/></svg>
+      alina schanz
+    </a>
+    <nav aria-label="main">
+      <ul class="menu">
+        <li><a href="/notes/">notes</a></li>
+        <li><a href="/about/">about</a></li>
+        <li><a class="hide-sm" href="/#scripts">scripts</a></li>
+        <li><a class="ext" href="https://x.com/alinaschanz" rel="me noopener">x</a></li>
+        <li><a class="ext" href="https://github.com/alinaschanz" rel="me noopener">github</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+<article class="article">
+  <div class="crumbs"><a href="/">home</a> / about</div>
+  <h1>about</h1>
+  <div class="meta"><span>who i am, how i work, what i use, how this site is built.</span></div>
+
+  <div class="prose">
+    <p class="lede">i am alina. i live in berlin and i spend more time in block explorers than is reasonable for someone who is not paid to. this page exists so you can decide whether to trust the numbers i post, and how much.</p>
+
+    <h2 id="me">who</h2>
+    <p>i came to crypto through the data, not the prices: a friend showed me a wallet on etherscan in 2021 and i could not stop clicking. since then i read chains the way other people read the news. ethereum first, because that is where the interesting activity is, bitcoin for the flows, solana when it gets loud enough to matter.</p>
+    <p>i am not a trader. i hold a little eth and a little btc, long term, and i do not touch them based on what i write. the short observations go on <a href="https://x.com/alinaschanz" rel="me noopener">x</a>, the longer ones become <a href="/notes/">notes</a>, and every number comes from a script you can run yourself.</p>
+
+    <h2 id="disclosure">how i work</h2>
+    <ul>
+      <li><strong>no paid posts.</strong> nobody pays me to write about a chain, a token or a product, and i do not run referral links. if that ever changes, it will be written on this page first.</li>
+      <li><strong>no calls.</strong> i post numbers and what i think they mean. "what i think" is opinion; the number is the part you should check.</li>
+      <li><strong>no trading around my own posts.</strong> i do not buy or sell anything i write about for seven days on either side of writing it.</li>
+      <li><strong>sources named.</strong> every number in a note says where it came from and when it was pulled. the scripts are public and unchanged from what i ran.</li>
+      <li><strong>corrections stay visible.</strong> when i am wrong, the post stays up and gets a note. i do not delete embarrassing takes.</li>
+    </ul>
+
+    <h2 id="timeline">timeline</h2>
+    <ul>
+      <li><span class="mono muted">2015 · jan</span> — joined x. mostly lurking for years.</li>
+      <li><span class="mono muted">2021</span> — first wallet on etherscan, first rabbit hole.</li>
+      <li><span class="mono muted">2026 · sep</span> — this site, the first note, the scripts made public.</li>
+    </ul>
+
+    <h2 id="corrections">corrections</h2>
+    <p>every mistake i notice or get told about is listed here with the date, whether it was in a note or on x. none yet. when there is one, it goes here first and the original stays up with a note.</p>
+
+    <h2 id="reading">what i read</h2>
+    <ul>
+      <li>ethresear.ch and the ethereum foundation blog for what is actually being shipped.</li>
+      <li>defillama and dune dashboards for numbers, not takes.</li>
+      <li>a handful of people on x who post their queries, not their bags. if you post the query, i probably follow you.</li>
+    </ul>
+
+    <h2 id="uses">what i use</h2>
+    <ul>
+      <li>explorers: etherscan and blockscout for ethereum, mempool.space for bitcoin, solscan when needed.</li>
+      <li>dashboards: defillama for tvl, dune when somebody already built the query, coingecko for prices.</li>
+      <li>my own scripts: python, standard library only, public rpc endpoints, no api keys. all on <a href="https://github.com/alinaschanz" rel="me noopener">github</a>.</li>
+      <li>a text editor, a terminal, too much coffee.</li>
+    </ul>
+
+    <h2 id="colophon">this site</h2>
+    <p>hand-written html and css, no framework, no build step, no cookies, no analytics. the live numbers on the front page are fetched by your browser directly from public apis and nothing is stored. hosted on github pages, <a href="https://github.com/alinaschanz/alinaschanz.github.io" rel="noopener">source here</a>. type is fraunces, inter and jetbrains mono.</p>
+    <p>the bull in the corner is a detail from paulus potter's painting in the mauritshuis, 1647. it has nothing to do with markets. i just like his face.</p>
+
+    <h2 id="contact">contact</h2>
+    <p><a href="mailto:hello@alinaschanz.life">hello@alinaschanz.life</a>, or a dm on <a href="https://x.com/alinaschanz" rel="me noopener">x</a>. i read everything, i answer most of it, i ignore anything that starts with "quick collab".</p>
+  </div>
+
+  <div class="author">
+    <img src="/img/avatar-160.jpg" width="52" height="52" alt="">
+    <div><b>alina schanz</b><span>onchain data, berlin. short version on <a href="https://x.com/alinaschanz" rel="me noopener">x</a>, scripts on <a href="https://github.com/alinaschanz" rel="me noopener">github</a>.</span></div>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <h4>alina schanz</h4>
+      <p>onchain data, notes and small scripts. berlin.</p>
+      <p class="fine">© 2026 · not financial advice, ever · no cookies, no analytics, no trackers.<br>last update 8 sep 2026 · <a href="/humans.txt">humans.txt</a></p>
+    </div>
+    <div>
+      <h4>around</h4>
+      <ul>
+        <li><a href="/">home</a></li>
+        <li><a href="/notes/">notes</a></li>
+        <li><a href="/about/">about</a></li>
+        <li><a href="/feed.xml">rss</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>elsewhere</h4>
+      <ul>
+        <li><a href="https://x.com/alinaschanz" rel="me noopener">x · @alinaschanz</a></li>
+        <li><a href="https://github.com/alinaschanz" rel="me noopener">github · alinaschanz</a></li>
+        <li><a href="mailto:hello@alinaschanz.life">hello@alinaschanz.life</a></li>
+        <li><a href="https://github.com/alinaschanz/alinaschanz.github.io" rel="noopener">source of this site</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

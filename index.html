@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>alina schanz — onchain data, berlin</title>
 <meta name="description" content="alina schanz. onchain data, notes and small scripts. berlin. numbers, not calls.">
-<meta name="theme-color" content="#f6f5f0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0e1012" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f11" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://alinaschanz.life/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="alina schanz">
@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/style.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Alina Schanz","url":"https://alinaschanz.life/","image":"https://alinaschanz.life/img/avatar.jpg","jobTitle":"Onchain data analyst","address":{"@type":"PostalAddress","addressLocality":"Berlin","addressCountry":"DE"},"email":"mailto:alinaschanz@proton.me","sameAs":["https://x.com/alinaschanz","https://github.com/alinaschanz"]}
+{"@context":"https://schema.org","@type":"Person","name":"Alina Schanz","url":"https://alinaschanz.life/","image":"https://alinaschanz.life/img/avatar.jpg","jobTitle":"Onchain data analyst","address":{"@type":"PostalAddress","addressLocality":"Berlin","addressCountry":"DE"},"email":"mailto:hello@alinaschanz.life","sameAs":["https://x.com/alinaschanz","https://github.com/alinaschanz"]}
 </script>
 </head>
 <body>
@@ -44,6 +44,7 @@
     <nav aria-label="main">
       <ul class="menu">
         <li><a href="/notes/">notes</a></li>
+        <li><a href="/about/">about</a></li>
         <li><a class="hide-sm" href="#scripts">scripts</a></li>
         <li><a class="ext" href="https://x.com/alinaschanz" rel="me noopener">x</a></li>
         <li><a class="ext" href="https://github.com/alinaschanz" rel="me noopener">github</a></li>
@@ -55,27 +56,31 @@
 <main class="wrap">
 
   <section class="hero" aria-labelledby="name">
-    <img class="avatar" src="/img/avatar.jpg" width="112" height="112" alt="alina schanz">
+    <div class="portrait">
+      <img class="avatar" src="/img/avatar.jpg" width="140" height="140" alt="alina schanz">
+      <div class="coords">52.5200° n · 13.4050° e</div>
+    </div>
     <div>
       <h1 id="name">alina schanz</h1>
       <div class="kicker">
         <span>onchain data</span><span class="dot"></span>
-        <span>notes</span><span class="dot"></span>
-        <span>berlin</span>
+        <span>on x since 2015</span><span class="dot"></span>
+        <span class="pill" title="berlin, right now"><span class="dotlive" aria-hidden="true"></span>berlin <span id="pill-time" class="mono">--:--</span><span class="muted" id="pill-wx"></span></span>
       </div>
       <p class="lead">i look at chains for a living and for fun. mostly ethereum and what is built on top of it, sometimes bitcoin flows, sometimes solana when it gets loud.</p>
-      <p class="lead">this page is for the longer thoughts. the short ones, with charts, are on x. the scripts i use to pull the numbers are on github. no calls, no financial advice. numbers and what i think they mean.</p>
+      <p class="lead">this page is for the longer thoughts. the short ones, with charts, are on x. the scripts i use to pull the numbers are on github. no calls, no financial advice, no paid posts. <a href="/about/#disclosure">how i work</a>.</p>
       <div class="cta">
         <a class="btn primary" href="/notes/">read the notes
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <a class="btn" href="https://x.com/alinaschanz" rel="me noopener">follow on x</a>
-        <a class="btn" href="mailto:alinaschanz@proton.me">say hi</a>
+        <a class="btn" href="mailto:hello@alinaschanz.life">say hi</a>
       </div>
     </div>
   </section>
 
   <section aria-labelledby="live-h">
+    <div class="label"><b>01</b>live</div>
     <div class="live">
       <div class="live-head">
         <span><span class="pulse" aria-hidden="true"></span><b id="live-h">the chain, right now</b></span>
@@ -88,27 +93,31 @@
         <div class="tile"><div class="k">fear &amp; greed</div><div class="v skeleton" id="fng-v">00</div><div class="s skeleton" id="fng-s">greed · 00 a week ago</div></div>
       </div>
       <div class="spark">
-        <svg id="spark" viewBox="0 0 600 64" preserveAspectRatio="none" role="img" aria-label="bitcoin price, last 7 days"></svg>
-        <div class="tile s mono" id="spark-cap" style="padding:0;border:0;font-size:12.5px;color:var(--muted)">btc, 7 days</div>
+        <svg id="spark" viewBox="0 0 600 76" preserveAspectRatio="none" role="img" aria-label="bitcoin price, last 7 days"></svg>
+        <div class="spark-axis" id="spark-axis" aria-hidden="true"></div>
+        <div class="spark-cap" id="spark-cap">btc, 7 days</div>
       </div>
-      <div class="live-foot">coingecko · alternative.me · public ethereum rpc. read in your browser, nothing is stored. <noscript>live numbers need javascript.</noscript></div>
+      <div class="live-foot">coingecko · alternative.me · public ethereum rpc · open-meteo. fetched by your browser, nothing is stored. <noscript>live numbers need javascript.</noscript></div>
     </div>
   </section>
 
   <section aria-labelledby="do-h">
-    <div class="sec-head"><h2 id="do-h">what i do</h2></div>
+    <div class="label"><b>02</b>what i do</div>
     <div class="cards">
       <div class="card">
+        <div class="num">01</div>
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 4 5-8"/></svg></div>
-        <h3>read the chain</h3>
+        <h3 id="do-h">read the chain</h3>
         <p>block explorers, fee markets, flows between wallets and exchanges. the boring public numbers that are usually right before the timeline is.</p>
       </div>
       <div class="card">
+        <div class="num">02</div>
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></div>
         <h3>write it down</h3>
         <p>a note when a number does not fit the story. once or twice a month, never longer than a coffee. old notes stay up, including the wrong ones.</p>
       </div>
       <div class="card">
+        <div class="num">03</div>
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg></div>
         <h3>keep the scripts public</h3>
         <p>small python, standard library, public endpoints, no keys. anyone can rerun the number instead of trusting the sentence.</p>
@@ -117,24 +126,32 @@
   </section>
 
   <section aria-labelledby="notes-h">
-    <div class="sec-head"><h2 id="notes-h">notes</h2><a href="/feed.xml">rss</a></div>
-    <ul class="notes">
-      <li>
-        <a class="row" href="/notes/2026-09-07-gas-at-0-07-gwei.html">
-          <time datetime="2026-09-07">7 sep 2026</time>
-          <span>
-            <span class="t">0.07 gwei. what an empty mainnet costs</span>
-            <span class="d" style="display:block">base fee at the floor, tvl still on L1, greed at 71 while the price goes nowhere.</span>
-            <span class="m" style="display:block">4 min read</span>
-          </span>
+    <div class="label"><b>03</b>notes</div>
+    <div class="sec-head"><h2 id="notes-h">latest note</h2><span class="links"><a href="/notes/">all notes</a> · <a href="/feed.xml">rss</a></span></div>
+    <div class="feature">
+      <div class="body">
+        <div class="meta">7 sep 2026 · berlin · 4 min read</div>
+        <h3><a href="/notes/2026-09-07-gas-at-0-07-gwei.html">0.07 gwei. what an empty mainnet costs</a></h3>
+        <p>base fee at the floor, tvl still on L1, greed at 71 while the price goes nowhere. three things i take from a sunday night with a block explorer open.</p>
+        <a class="btn" href="/notes/2026-09-07-gas-at-0-07-gwei.html">read it
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-      </li>
-    </ul>
+      </div>
+      <div class="side">
+        <div class="k">from the note</div>
+        <p class="quote">“cheap gas is not a bug. the transactions left, the money stayed.”</p>
+        <div class="k">numbers that night</div>
+        <div class="mono muted" style="font-size:13px;line-height:1.8">btc $79,172 · eth $2,488<br>base fee 0.068 gwei<br>fear &amp; greed 71 · dominance 59.1%</div>
+      </div>
+    </div>
   </section>
 
   <section id="scripts" aria-labelledby="scripts-h">
-    <div class="sec-head"><h2 id="scripts-h">scripts</h2><a href="https://github.com/alinaschanz" rel="me noopener">github.com/alinaschanz ↗</a></div>
-    <pre class="term" aria-label="sample output of daily_card.py"><span class="cmd">python daily_card.py</span>
+    <div class="label"><b>04</b>scripts</div>
+    <div class="sec-head"><h2 id="scripts-h">the scripts behind the numbers</h2><a href="https://github.com/alinaschanz" rel="me noopener">github.com/alinaschanz ↗</a></div>
+    <div class="term-win">
+      <div class="term-bar"><i></i><i></i><i></i><span>daily_card.py — onchain-notes</span></div>
+<pre class="term" aria-label="sample output of daily_card.py"><span class="cmd">python daily_card.py</span>
 <span class="dim">-- 2026-09-07T22:17+00:00 --</span>
 btc       $79,139  <span class="down">-0.7%</span> 24h
 eth        $2,488  <span class="down">-0.4%</span> 24h
@@ -143,20 +160,33 @@ gas  base 0.0483 gwei  blob 0.00271 gwei  <span class="dim">(block 25928407)</sp
 f&amp;g  71 greed  <span class="dim">(week ago 62)</span>
 dom  btc 59.1%
 tvl  ethereum $49.6b / solana $5.9b / bsc $5.7b / base $5.6b / tron $5.5b</pre>
-    <p class="term-cap">that is <a href="https://github.com/alinaschanz/onchain-notes" rel="noopener">onchain-notes</a>: <code>daily_card.py</code>, the numbers i look at before posting anything, and <code>gas_now.py</code>, what a transfer or a swap costs on mainnet right now, in cents. the same idea, grown into small packages: <a href="https://github.com/alinaschanz/gasweek" rel="noopener">gasweek</a> (when is ethereum cheapest, hour by hour, with a chart that redraws itself every night), <a href="https://github.com/alinaschanz/bigmoves" rel="noopener">bigmoves</a> (large stablecoin, weth and wbtc transfers with exchange labels), <a href="https://github.com/alinaschanz/stablepeg" rel="noopener">stablepeg</a> (are the stablecoins still a dollar, read from uniswap and curve) and <a href="https://github.com/alinaschanz/ens-lookup" rel="noopener">ens-lookup</a> (names to addresses and back). python 3.10+, standard library, public endpoints, no keys.</p>
+    </div>
+    <p class="term-cap">everything is python 3.10+, standard library only, public json-rpc endpoints, no api keys. if a number in a post looks off, the script that produced it is here.</p>
+    <ul class="repos">
+      <li><a href="https://github.com/alinaschanz/onchain-notes" rel="noopener">onchain-notes</a><span>the numbers i look at before posting anything: prices, base fee, fear &amp; greed, tvl. one card, one screen.</span></li>
+      <li><a href="https://github.com/alinaschanz/gasweek" rel="noopener">gasweek</a><span>when is ethereum cheapest? base fee by hour of day over the last week, as a table and an svg.</span></li>
+      <li><a href="https://github.com/alinaschanz/bigmoves" rel="noopener">bigmoves</a><span>large stablecoin, weth and wbtc transfers in the last n blocks, with exchange and bridge labels.</span></li>
+      <li><a href="https://github.com/alinaschanz/stablepeg" rel="noopener">stablepeg</a><span>are the stablecoins still a dollar? uniswap v3 spot and twap, a curve 3pool quote, coingecko next to it.</span></li>
+      <li><a href="https://github.com/alinaschanz/ens-lookup" rel="noopener">ens-lookup</a><span>ens names to addresses and back, text records included. pure python, keccak and all.</span></li>
+      <li><a href="https://github.com/alinaschanz/alinaschanz.github.io" rel="noopener">alinaschanz.github.io</a><span>this page. hand-written html and css, no framework, no trackers, no cookies.</span></li>
+    </ul>
   </section>
 
   <section aria-labelledby="now-h">
-    <div class="sec-head"><h2 id="now-h">now</h2></div>
+    <div class="label"><b>05</b>now</div>
     <div class="now">
       <div class="card">
-        <p>reading more than trading this week. berlin, september, the spree is still warm enough to sit next to. gas is so cheap that i keep refreshing it like a weather app.</p>
+        <h3 id="now-h" style="font-size:22px;margin-bottom:10px">this week</h3>
+        <p>reading more than trading. berlin, september, the spree is still warm enough to sit next to. gas is so cheap that i keep refreshing it like a weather app.</p>
         <div class="when">updated 7 sep 2026</div>
       </div>
-      <div class="stack">
-        <a href="https://x.com/alinaschanz" rel="me noopener"><span>x</span><span>@alinaschanz</span></a>
-        <a href="https://github.com/alinaschanz" rel="me noopener"><span>github</span><span>alinaschanz</span></a>
-        <a href="mailto:alinaschanz@proton.me"><span>mail</span><span>alinaschanz@proton.me</span></a>
+      <div class="berlin">
+        <div class="tilecard"><div class="k">berlin, right now</div><div class="v"><span id="bln-time">--:--</span> · <span id="bln-temp" class="skeleton">00°C</span></div><div class="s" id="bln-wx">&nbsp;</div></div>
+        <div class="stack">
+          <a href="https://x.com/alinaschanz" rel="me noopener"><span>x</span><span>@alinaschanz</span></a>
+          <a href="https://github.com/alinaschanz" rel="me noopener"><span>github</span><span>alinaschanz</span></a>
+          <a href="mailto:hello@alinaschanz.life"><span>mail</span><span>hello@alinaschanz.life</span></a>
+        </div>
       </div>
     </div>
   </section>
@@ -164,15 +194,30 @@ tvl  ethereum $49.6b / solana $5.9b / bsc $5.7b / base $5.6b / tron $5.5b</pre>
 </main>
 
 <footer>
-  <div class="wrap">
-    <span>© 2026 alina schanz · berlin · not financial advice, ever.</span>
-    <nav aria-label="footer">
-      <a href="/notes/">notes</a>
-      <a href="/feed.xml">rss</a>
-      <a href="https://x.com/alinaschanz" rel="me noopener">x</a>
-      <a href="https://github.com/alinaschanz" rel="me noopener">github</a>
-      <a href="mailto:alinaschanz@proton.me">mail</a>
-    </nav>
+  <div class="wrap foot">
+    <div>
+      <h4>alina schanz</h4>
+      <p>onchain data, notes and small scripts. berlin.</p>
+      <p class="fine">© 2026 · not financial advice, ever · no cookies, no analytics, no trackers.<br>last update 8 sep 2026 · <a href="/humans.txt">humans.txt</a></p>
+    </div>
+    <div>
+      <h4>around</h4>
+      <ul>
+        <li><a href="/notes/">notes</a></li>
+        <li><a href="/about/">about</a></li>
+        <li><a href="/#scripts">scripts</a></li>
+        <li><a href="/feed.xml">rss</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>elsewhere</h4>
+      <ul>
+        <li><a href="https://x.com/alinaschanz" rel="me noopener">x · @alinaschanz</a></li>
+        <li><a href="https://github.com/alinaschanz" rel="me noopener">github · alinaschanz</a></li>
+        <li><a href="mailto:hello@alinaschanz.life">hello@alinaschanz.life</a></li>
+        <li><a href="https://github.com/alinaschanz/alinaschanz.github.io" rel="noopener">source of this site</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
 
