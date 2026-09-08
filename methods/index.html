@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://min-api.cryptocompare.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://api.kraken.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://gateway.tenderly.co https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
 <title>where the numbers come from — alina schanz</title>
 <meta name="description" content="every figure on this site, with the endpoint and the formula behind it: prices, base fee, gasweek, bigmoves, stablepeg, ens-lookup, and what can go wrong.">
 <meta name="author" content="alina schanz">
@@ -79,8 +79,8 @@
     <h2 id="sources">sources</h2>
     <div class="data-wrap"><table class="src">
       <tr><th>number</th><th>source</th><th>how</th></tr>
-      <tr><td>btc, eth, sol price</td><td>coingecko <code>simple/price</code></td><td>usd, with the 24-hour change the api reports. the 7-day chart on the front page uses coingecko <code>market_chart</code>, and coinbase hourly candles or cryptocompare when coingecko limits your ip.</td></tr>
-      <tr><td>eth base fee</td><td>public json-rpc, <code>eth_feeHistory</code></td><td>the base fee of the next block, straight from the chain. blob base fee from the same call. nodes tried in order: publicnode, drpc, mevblocker.</td></tr>
+      <tr><td>btc, eth, sol price</td><td>coingecko <code>simple/price</code></td><td>usd, with the 24-hour change the api reports. when coingecko limits your ip, the front page falls back to coinbase (its 24-hour open gives the same change) and then kraken (spot only, and it says so). the 7-day chart uses coingecko <code>market_chart</code>, then coinbase or kraken hourly candles.</td></tr>
+      <tr><td>eth base fee</td><td>public json-rpc, <code>eth_feeHistory</code></td><td>the base fee of the next block, straight from the chain. blob base fee from the same call. nodes tried in order: publicnode, drpc, tenderly, mevblocker.</td></tr>
       <tr><td>what a transfer costs</td><td>same call, last 20 blocks</td><td>base fee plus the median priority fee of the last 20 blocks, times 21,000 gas for a transfer, times the eth price.</td></tr>
       <tr><td>fear &amp; greed</td><td>alternative.me <code>fng</code></td><td>today's value and the value seven days back. it is their index, not mine.</td></tr>
       <tr><td>tvl by chain</td><td>defillama <code>v2/chains</code></td><td>as reported. i quote it, i do not recompute it.</td></tr>

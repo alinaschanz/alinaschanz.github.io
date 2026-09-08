@@ -1,5 +1,7 @@
 /* live numbers on the front page. public apis, no keys, fails quietly.
-   the switch on /privacy/ turns every request off; the clock keeps running. */
+   every tile has more than one source: coingecko is rate limited per visitor ip, and a vpn
+   exit or a content blocker can shut one host off, so the next one is tried before a tile
+   gives up. the switch on /privacy/ turns every request off; the clock keeps running. */
 (function () {
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
@@ -12,14 +14,11 @@
     var el = $(id);
     if (!el) return;
     el.textContent = text;
-    el.classList.remove("skeleton");
+    el.classList.remove("skeleton", "up", "down", "amber");
     if (cls) el.classList.add(cls);
   }
-  function fail(id, sub) {
-    set(id, "—");
-    if (sub) set(sub, "unavailable");
-  }
-  function get(url, opts) {
+  function wait(ms) { return new Promise(function (res) { setTimeout(res, ms); }); }
+  function get(url, opts, retry) {
     var ctrl = typeof AbortController !== "undefined" ? new AbortController() : null;
     var t = ctrl ? setTimeout(function () { ctrl.abort(); }, 9000) : null;
     var o = Object.assign({ signal: ctrl ? ctrl.signal : undefined }, opts || {});
@@ -27,7 +26,19 @@
       if (t) clearTimeout(t);
       if (!r.ok) throw new Error(String(r.status));
       return r.json();
+    }).catch(function (e) {
+      if (t) clearTimeout(t);
+      // one more try after a pause when the network said no. a 4xx is an answer (a rate
+      // limit, mostly) and asking again would not change it: move on to the next source.
+      if (retry !== false && !/^4\d\d$/.test(String(e && e.message))) {
+        return wait(1500).then(function () { return get(url, opts, false); });
+      }
+      throw e;
     });
+  }
+  // the first source that answers wins
+  function firstOf(fns) {
+    return fns.reduce(function (p, fn) { return p.catch(function () { return fn(); }); }, Promise.reject(new Error("start")));
   }
   function ago(iso) {
     var s = Math.max(0, (Date.now() - Date.parse(iso)) / 1000);
@@ -63,56 +74,104 @@
     return;
   }
 
-  // prices
-  get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true")
-    .then(function (d) {
-      [["bitcoin", "btc"], ["ethereum", "eth"]].forEach(function (pair) {
-        var row = d[pair[0]];
-        if (!row) return fail(pair[1] + "-v", pair[1] + "-s");
-        set(pair[1] + "-v", fmtUsd.format(row.usd));
-        var c = row.usd_24h_change;
-        if (typeof c === "number") set(pair[1] + "-s", fmtPct(c) + " · 24h", c >= 0 ? "up" : "down");
-      });
-    })
-    .catch(function () { fail("btc-v", "btc-s"); fail("eth-v", "eth-s"); });
+  // when a tile gives up, say why it usually happens and offer another go
+  var FOOT = null;
+  function fail(id, sub) {
+    set(id, "—");
+    if (sub) set(sub, "unavailable");
+    var foot = document.querySelector(".live-foot");
+    if (!foot || $("live-retry")) return;
+    if (FOOT === null) FOOT = foot.innerHTML;
+    foot.innerHTML = 'a source did not answer. a vpn exit, a content blocker or a rate limit usually explains it; ' +
+      'nothing is stored either way. <a href="#" id="live-retry">try again</a> · ' + FOOT;
+    var a = $("live-retry");
+    if (a) a.addEventListener("click", function (ev) { ev.preventDefault(); run(); });
+  }
 
-  // ethereum base fee, next block
-  var rpcs = ["https://ethereum-rpc.publicnode.com", "https://eth.drpc.org", "https://rpc.mevblocker.io"];
-  (function tryRpc(i) {
-    if (i >= rpcs.length) return fail("gas-v", "gas-s");
-    get(rpcs[i], {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_feeHistory", params: ["0x1", "latest", []] })
-    }).then(function (d) {
-      var arr = d.result && d.result.baseFeePerGas;
-      if (!arr || !arr.length) throw new Error("no fee");
-      var gwei = parseInt(arr[arr.length - 1], 16) / 1e9;
+  // prices: coingecko, then coinbase (open is 24 h ago, so the change comes out the same),
+  // then kraken (spot only)
+  function pricesCoinGecko() {
+    return get("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true")
+      .then(function (d) {
+        function row(x) { if (!x || !(x.usd > 0)) throw new Error("no price"); return [x.usd, x.usd_24h_change]; }
+        return { btc: row(d.bitcoin), eth: row(d.ethereum), src: "coingecko" };
+      });
+  }
+  function pricesCoinbase() {
+    return Promise.all(["BTC", "ETH"].map(function (s) { return get("https://api.exchange.coinbase.com/products/" + s + "-USD/stats"); }))
+      .then(function (r) {
+        function row(x) {
+          var last = parseFloat(x.last), open = parseFloat(x.open);
+          if (!(last > 0)) throw new Error("no price");
+          return [last, open > 0 ? (last / open - 1) * 100 : null];
+        }
+        return { btc: row(r[0]), eth: row(r[1]), src: "coinbase" };
+      });
+  }
+  function pricesKraken() {
+    return get("https://api.kraken.com/0/public/Ticker?pair=XBTUSD,ETHUSD")
+      .then(function (d) {
+        var res = d.result || {};
+        function row(x) { var last = x && x.c ? parseFloat(x.c[0]) : 0; if (!(last > 0)) throw new Error("no price"); return [last, null]; }
+        return { btc: row(res.XXBTZUSD), eth: row(res.XETHZUSD), src: "kraken" };
+      });
+  }
+  function prices() {
+    firstOf([pricesCoinGecko, pricesCoinbase, pricesKraken])
+      .then(function (q) {
+        [["btc", q.btc], ["eth", q.eth]].forEach(function (pair) {
+          set(pair[0] + "-v", fmtUsd.format(pair[1][0]));
+          var c = pair[1][1];
+          if (typeof c === "number") set(pair[0] + "-s", fmtPct(c) + " · 24h", c >= 0 ? "up" : "down");
+          else set(pair[0] + "-s", "spot · " + q.src);
+        });
+      })
+      .catch(function () { fail("btc-v", "btc-s"); fail("eth-v", "eth-s"); });
+  }
+
+  // ethereum base fee, next block: four public rpcs, in this order
+  var RPCS = ["https://ethereum-rpc.publicnode.com", "https://eth.drpc.org", "https://gateway.tenderly.co/public/mainnet", "https://rpc.mevblocker.io"];
+  function baseFee() {
+    firstOf(RPCS.map(function (url) {
+      return function () {
+        return get(url, {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "eth_feeHistory", params: ["0x1", "latest", []] })
+        }).then(function (d) {
+          var arr = d.result && d.result.baseFeePerGas;
+          if (!arr || !arr.length) throw new Error("no fee");
+          return d.result;
+        });
+      };
+    })).then(function (r) {
+      var arr = r.baseFeePerGas, gwei = parseInt(arr[arr.length - 1], 16) / 1e9;
       set("gas-v", (gwei < 1 ? gwei.toPrecision(2) : gwei.toFixed(1)) + " gwei");
-      var blob = d.result.baseFeePerBlobGas;
+      var blob = r.baseFeePerBlobGas;
       if (blob && blob.length) {
         var b = parseInt(blob[blob.length - 1], 16) / 1e9;
         set("gas-s", "blob " + (b < 1 ? b.toPrecision(2) : b.toFixed(1)) + " gwei");
       } else {
         set("gas-s", "base fee, next block");
       }
-    }).catch(function () { tryRpc(i + 1); });
-  })(0);
+    }).catch(function () { fail("gas-v", "gas-s"); });
+  }
 
-  // fear & greed
-  get("https://api.alternative.me/fng/?limit=8")
-    .then(function (d) {
-      var rows = d.data || [];
-      if (!rows.length) throw new Error("empty");
-      var v = parseInt(rows[0].value, 10);
-      set("fng-v", String(v), v >= 60 ? "amber" : "");
-      var label = (rows[0].value_classification || "").toLowerCase();
-      var wk = rows[7] ? parseInt(rows[7].value, 10) : null;
-      set("fng-s", label + (wk ? " · " + wk + " a week ago" : ""));
-    })
-    .catch(function () { fail("fng-v", "fng-s"); });
+  // fear & greed: one public source, so it gets the retry inside get() and nothing else
+  function fearGreed() {
+    get("https://api.alternative.me/fng/?limit=8")
+      .then(function (d) {
+        var rows = d.data || [];
+        if (!rows.length) throw new Error("empty");
+        var v = parseInt(rows[0].value, 10);
+        set("fng-v", String(v), v >= 60 ? "amber" : "");
+        var label = (rows[0].value_classification || "").toLowerCase();
+        var wk = rows[7] ? parseInt(rows[7].value, 10) : null;
+        set("fng-s", label + (wk ? " · " + wk + " a week ago" : ""));
+      })
+      .catch(function () { fail("fng-v", "fng-s"); });
+  }
 
-  // btc, 7 days. three public sources, first one that answers wins: coingecko is rate
-  // limited per visitor ip, so coinbase and cryptocompare stand behind it.
+  // btc, 7 days: coingecko, then coinbase hourly candles, then kraken hourly candles
   function drawSpark(pts, source) {
     var svg = $("spark");
     if (!svg || !pts || pts.length < 10) throw new Error("no points");
@@ -137,45 +196,48 @@
       axis.innerHTML = out.join("");
     }
   }
-  function viaCoinGecko() {
+  function sparkCoinGecko() {
     return get("https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7")
-      .then(function (d) { return (d.prices || []).map(function (p) { return p[1]; }); });
+      .then(function (d) { drawSpark((d.prices || []).map(function (p) { return p[1]; }), "coingecko"); });
   }
-  function viaCoinbase() {
+  function sparkCoinbase() {
     // candles come newest first: [time, low, high, open, close, volume]
     return get("https://api.exchange.coinbase.com/products/BTC-USD/candles?granularity=3600")
-      .then(function (d) { return (d || []).slice(0, 168).reverse().map(function (c) { return c[4]; }); });
+      .then(function (d) { drawSpark((d || []).slice(0, 168).reverse().map(function (c) { return c[4]; }), "coinbase"); });
   }
-  function viaCryptoCompare() {
-    return get("https://min-api.cryptocompare.com/data/v2/histohour?fsym=BTC&tsym=USD&limit=168")
-      .then(function (d) { return (((d || {}).Data || {}).Data || []).map(function (c) { return c.close; }); });
+  function sparkKraken() {
+    // candles come oldest first: [time, open, high, low, close, vwap, volume, count]
+    return get("https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=60")
+      .then(function (d) { drawSpark(((d.result || {}).XXBTZUSD || []).slice(-168).map(function (c) { return parseFloat(c[4]); }), "kraken"); });
   }
-  setTimeout(function () {
-    viaCoinGecko().then(function (p) { drawSpark(p, "coingecko"); })
-      .catch(function () { return viaCoinbase().then(function (p) { drawSpark(p, "coinbase"); }); })
-      .catch(function () { return viaCryptoCompare().then(function (p) { drawSpark(p, "cryptocompare"); }); })
-      .catch(function () { set("spark-cap", "btc, 7 days · unavailable"); });
-  }, 1200);
+  function spark() {
+    set("spark-cap", "btc, 7 days");
+    wait(1200).then(function () { return firstOf([sparkCoinGecko, sparkCoinbase, sparkKraken]); })
+      .catch(function () { fail(null, "spark-cap"); });
+  }
 
   // berlin weather (open-meteo, no key)
   var wx = { 0: "clear sky", 1: "mostly clear", 2: "partly cloudy", 3: "overcast", 45: "fog", 48: "fog", 51: "drizzle", 53: "drizzle", 55: "drizzle",
     61: "light rain", 63: "rain", 65: "heavy rain", 71: "snow", 73: "snow", 75: "snow", 80: "showers", 81: "showers", 82: "showers", 95: "thunderstorm" };
-  get("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.405&current=temperature_2m,weather_code&timezone=Europe%2FBerlin")
-    .then(function (d) {
-      var c = d.current || {};
-      if (typeof c.temperature_2m !== "number") throw new Error("no temp");
-      var word = wx[c.weather_code] || "";
-      set("bln-temp", Math.round(c.temperature_2m) + "°C");
-      set("bln-wx", word || "weather");
-      var pill = $("pill-wx");
-      if (pill) pill.textContent = Math.round(c.temperature_2m) + "°C" + (word ? ", " + word : "");
-    })
-    .catch(function () { set("bln-temp", "—"); set("bln-wx", "weather unavailable"); });
+  function weather() {
+    get("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.405&current=temperature_2m,weather_code&timezone=Europe%2FBerlin")
+      .then(function (d) {
+        var c = d.current || {};
+        if (typeof c.temperature_2m !== "number") throw new Error("no temp");
+        var word = wx[c.weather_code] || "";
+        set("bln-temp", Math.round(c.temperature_2m) + "°C");
+        set("bln-wx", word || "weather");
+        var pill = $("pill-wx");
+        if (pill) pill.textContent = Math.round(c.temperature_2m) + "°C" + (word ? ", " + word : "");
+      })
+      .catch(function () { set("bln-temp", "—"); set("bln-wx", "weather unavailable"); });
+  }
 
   // latest pushes, from the public github events api (60 requests an hour per ip). the
   // events carry the head sha, not the message, so the newest three are looked up once more.
-  var gh = $("gh-commits");
-  if (gh) {
+  function github() {
+    var gh = $("gh-commits");
+    if (!gh) return;
     get("https://api.github.com/users/alinaschanz/events/public?per_page=30")
       .then(function (events) {
         var rows = [], seen = {};
@@ -207,7 +269,7 @@
         var note = $("gh-note");
         if (note) note.textContent = "· fetched by your browser just now";
         rows.slice(0, 3).forEach(function (r) {
-          get("https://api.github.com/repos/" + r.full + "/commits/" + r.sha)
+          get("https://api.github.com/repos/" + r.full + "/commits/" + r.sha, null, false)
             .then(function (c) { r.msg = ((c.commit || {}).message || "").split("\n")[0]; render(); })
             .catch(function () { /* the sha line stays */ });
         });
@@ -215,6 +277,16 @@
       .catch(function () { gh.innerHTML = '<li class="muted">unavailable right now (github limits anonymous requests). the repositories are one click away above.</li>'; });
   }
 
-  var now = new Date();
-  set("live-at", "updated " + now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+  function run() {
+    var foot = document.querySelector(".live-foot");
+    if (foot && FOOT !== null) foot.innerHTML = FOOT;
+    prices();
+    baseFee();
+    fearGreed();
+    spark();
+    weather();
+    github();
+    set("live-at", "updated " + new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
+  }
+  run();
 })();

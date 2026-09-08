@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://min-api.cryptocompare.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://api.kraken.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://gateway.tenderly.co https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
 <title>changelog — alina schanz</title>
 <meta name="description" content="what changed on alinaschanz.life, and when.">
 <meta name="author" content="alina schanz">
@@ -64,6 +64,7 @@
 
   <div class="prose">
     <ul class="log">
+      <li><time datetime="2026-09-08">8 sep 2026</time><div><b>live numbers that survive a bad network.</b><p>every tile on the home page now has a second and a third source (coinbase and kraken for the prices and the chart, a fourth public node for the base fee), a failed request is tried once more, and when a tile still gives up the page says why that usually happens and offers a "try again" link instead of a silent dash. cryptocompare dropped: it wants an api key now. the <a href="/privacy/">privacy</a> table and <a href="/methods/">methods</a> list the new hosts.</p></div></li>
       <li><time datetime="2026-09-08">8 sep 2026</time><div><b>trust round.</b><p>fonts served from here instead of a font network. a content security policy on every page, listing the only hosts a page may call. new pages: <a href="/verify/">verify</a> (accounts, pgp key, how to check a commit), <a href="/methods/">methods</a>, <a href="/data/">data</a> with the daily base fee dataset read live, <a href="/scripts/">scripts</a> with live status, <a href="/privacy/">privacy</a> with a switch for the live numbers, <a href="/now/">now</a>, this changelog. a signed <a href="/.well-known/security.txt">security.txt</a>, the key at <a href="/pgp.txt">/pgp.txt</a> and through web key directory, a json feed next to the atom one, a web manifest, structured data on every page, a skip link for keyboards.</p></div></li>
       <li><time datetime="2026-09-08">8 sep 2026</time><div><b>v3.</b><p>berlin time and weather next to the live numbers, coordinates under the portrait, the latest note as a card with a quote, the six repositories as cards, a three-column footer, humans.txt.</p></div></li>
       <li><time datetime="2026-09-08">8 sep 2026</time><div><b>v2.</b><p>the <a href="/about/">about page</a> with the disclosure: no paid posts, no calls, no trading around my own notes, sources named, corrections stay visible. the bitcoin 7-day chart with two fallback sources.</p></div></li>

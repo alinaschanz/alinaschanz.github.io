@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://min-api.cryptocompare.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://api.kraken.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://gateway.tenderly.co https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
 <title>privacy — alina schanz</title>
 <meta name="description" content="no cookies, no analytics, no trackers, self-hosted fonts. which public apis your browser calls for the live numbers, and the switch to turn them off.">
 <meta name="author" content="alina schanz">
@@ -74,9 +74,9 @@
     <div class="data-wrap"><table class="src">
       <tr><th>host</th><th>page</th><th>for</th></tr>
       <tr><td>api.coingecko.com</td><td>home</td><td>bitcoin and ethereum price, the 7-day chart</td></tr>
-      <tr><td>api.exchange.coinbase.com, min-api.cryptocompare.com</td><td>home</td><td>the 7-day chart, only if coingecko refuses</td></tr>
+      <tr><td>api.exchange.coinbase.com, api.kraken.com</td><td>home</td><td>the prices and the 7-day chart, only if coingecko refuses (a rate limit, a vpn exit or a content blocker)</td></tr>
       <tr><td>api.alternative.me</td><td>home</td><td>fear &amp; greed</td></tr>
-      <tr><td>ethereum-rpc.publicnode.com, eth.drpc.org, rpc.mevblocker.io</td><td>home</td><td>the base fee of the next block; tried in that order</td></tr>
+      <tr><td>ethereum-rpc.publicnode.com, eth.drpc.org, gateway.tenderly.co, rpc.mevblocker.io</td><td>home</td><td>the base fee of the next block; tried in that order</td></tr>
       <tr><td>api.open-meteo.com</td><td>home</td><td>berlin temperature and sky</td></tr>
       <tr><td>api.github.com</td><td>home, scripts</td><td>my latest commits, repository status</td></tr>
       <tr><td>raw.githubusercontent.com</td><td>data</td><td>the daily base fee dataset</td></tr>
