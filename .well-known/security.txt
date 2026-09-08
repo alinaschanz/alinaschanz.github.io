@@ -1,0 +1,18 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Contact: mailto:hello@alinaschanz.life
+Expires: 2027-09-08T00:00:00.000Z
+Encryption: https://alinaschanz.life/pgp.txt
+Encryption: openpgp4fpr:17BA4C393451A56B37B8EDBBF1A6474B431DF3AB
+Preferred-Languages: en, de
+Canonical: https://alinaschanz.life/.well-known/security.txt
+Policy: https://alinaschanz.life/verify/
+-----BEGIN PGP SIGNATURE-----
+
+iJEEARYKADkWIQQXukw5NFGlaze47bvxpkdLQx3zqwUCap+M9hsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMiwyLDEACgkQ8aZHS0Md86unqQEApqOcbtgXTuf1UhaVmEpk
+JmKIdtciUH/yM2F0L6oulEYA/j5r7oidtMqMt0QjrizlgynwwxUIUXNKND+JWf/Z
+SUMO
+=OcEt
+-----END PGP SIGNATURE-----

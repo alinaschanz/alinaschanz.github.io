@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://min-api.cryptocompare.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<title>is this really me? — alina schanz</title>
+<meta name="description" content="the accounts that are me, the ones that are not, my pgp key, and how to verify a signed commit.">
+<meta name="author" content="alina schanz">
+<meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f11" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://alinaschanz.life/verify/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="alina schanz">
+<meta property="og:title" content="is this really me? — alina schanz">
+<meta property="og:description" content="the accounts that are me, the ones that are not, my pgp key, and how to verify a signed commit.">
+<meta property="og:url" content="https://alinaschanz.life/verify/">
+<meta property="og:image" content="https://alinaschanz.life/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@alinaschanz">
+<meta name="twitter:creator" content="@alinaschanz">
+<meta name="twitter:image" content="https://alinaschanz.life/img/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="application/atom+xml" title="alina schanz — notes" href="/feed.xml">
+<link rel="alternate" type="application/feed+json" title="alina schanz — notes" href="/feed.json">
+<link rel="me" href="https://x.com/alinaschanz">
+<link rel="me" href="https://github.com/alinaschanz">
+<link rel="me" href="mailto:hello@alinaschanz.life">
+<link rel="pgpkey" href="/pgp.txt">
+<link rel="author" href="/about/">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://alinaschanz.life/verify/#page", "url": "https://alinaschanz.life/verify/", "name": "is this really me? — alina schanz", "about": {"@id": "https://alinaschanz.life/#me"}, "isPartOf": {"@id": "https://alinaschanz.life/#site"}}, {"@type": "Person", "@id": "https://alinaschanz.life/#me", "name": "Alina Schanz", "url": "https://alinaschanz.life/", "image": "https://alinaschanz.life/img/avatar.jpg", "jobTitle": "Onchain data analyst", "address": {"@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE"}, "email": "mailto:hello@alinaschanz.life", "sameAs": ["https://x.com/alinaschanz", "https://github.com/alinaschanz"], "knowsAbout": ["Ethereum", "Bitcoin", "onchain data", "gas fees", "stablecoins", "ENS"], "identifier": {"@type": "PropertyValue", "propertyID": "OpenPGP fingerprint", "value": "17BA4C393451A56B37B8EDBBF1A6474B431DF3AB"}}]}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="alina schanz, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="var(--accent)"/><path d="M12 42 L22 28 L30 36 L38 22 L46 30 L52 20" fill="none" stroke="var(--accent-ink)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="52" cy="20" r="4" fill="var(--accent-ink)"/></svg>
+      alina schanz
+    </a>
+    <nav aria-label="main">
+      <ul class="menu">
+        <li><a href="/notes/">notes</a></li>
+        <li><a href="/about/">about</a></li>
+        <li><a class="hide-sm" href="/scripts/">scripts</a></li>
+        <li><a class="hide-sm" href="/data/">data</a></li>
+        <li><a class="ext" href="https://x.com/alinaschanz" rel="me noopener">x</a></li>
+        <li><a class="ext" href="https://github.com/alinaschanz" rel="me noopener">github</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+<article class="article">
+  <div class="crumbs"><a href="/">home</a> / verify</div>
+  <h1>is this really me?</h1>
+  <div class="meta"><span>the handful of places i exist, how they point at each other, and how to check a signature.</span></div>
+
+  <div class="prose">
+    <p class="lede">accounts get copied. the easiest way to know you are talking to me is that everything below points at everything else, and nothing outside this list is me.</p>
+
+    <h2 id="anchors">where i am</h2>
+    <div class="kv">
+      <div class="item"><div class="k">x</div><div class="v"><a href="https://x.com/alinaschanz" rel="me noopener">@alinaschanz</a> — joined january 2015. the website field on that profile points here.</div></div>
+      <div class="item"><div class="k">github</div><div class="v"><a href="https://github.com/alinaschanz" rel="me noopener">alinaschanz</a> — the profile links this site, this site links the profile. every commit is signed with the key below.</div></div>
+      <div class="item"><div class="k">email</div><div class="v"><a href="mailto:hello@alinaschanz.life">hello@alinaschanz.life</a> — the only address i use in public. mail from any other domain with my name on it is not from me.</div></div>
+      <div class="item"><div class="k">this site</div><div class="v">alinaschanz.life, registered september 2026. the x account is eleven years older than the site; that is the right way round.</div></div>
+    </div>
+
+    <h2 id="not">where i am not</h2>
+    <p>i have no telegram, no discord, no instagram, no tiktok, no linkedin, no youtube, no farcaster and no second x account. i do not sell signals, i do not run a group, i will never message you first about a trade, a listing, a "collab" or a wallet. if something with my name or my bull does any of that, it is somebody else. tell me at the address above and i will add it to the list here.</p>
+
+    <h2 id="key">the key</h2>
+    <p>one openpgp key, ed25519, made 8 september 2026, valid until 7 september 2028. it signs my git commits and it can encrypt mail to me.</p>
+    <span class="fpr">17BA 4C39 3451 A56B 37B8  EDBB F1A6 474B 431D F3AB</span>
+    <p class="fine-top">get it from <a href="/pgp.txt">/pgp.txt</a>, or let gpg find it through this domain (web key directory):</p>
+<pre class="code">gpg --locate-keys hello@alinaschanz.life
+gpg --fingerprint hello@alinaschanz.life</pre>
+    <p>the fingerprint gpg prints has to match the one above. if it does not, stop.</p>
+
+    <h2 id="commits">check a commit</h2>
+<pre class="code">git clone https://github.com/alinaschanz/gasweek
+cd gasweek
+gpg --import &lt;(curl -s https://alinaschanz.life/pgp.txt)
+git log --show-signature -1</pre>
+    <p>"good signature from alina schanz" with the fingerprint above means the code is what i pushed. github shows the same check as a "verified" badge on each commit.</p>
+
+    <h2 id="numbers">check a number</h2>
+    <p>every number in a note or a post comes from a script in one of the <a href="/scripts/">repositories</a>. the <a href="/methods/">methods page</a> says which endpoint and which formula. if a rerun gives you something else, the note is wrong and i want to know.</p>
+
+    <h2 id="security">found a problem?</h2>
+    <p>this site has a <a href="/.well-known/security.txt">security.txt</a>, signed with the same key. it says the same thing as this page: write to hello@alinaschanz.life, encrypted if you like.</p>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <h4>alina schanz</h4>
+      <p>onchain data, notes and small scripts. berlin.</p>
+      <p class="fine">© 2026 · not financial advice, ever · no cookies, no analytics, no trackers.<br>last update 8 sep 2026 · <a href="/changelog/">changelog</a> · <a href="/humans.txt">humans.txt</a></p>
+    </div>
+    <div>
+      <h4>around</h4>
+      <ul>
+        <li><a href="/">home</a></li>
+        <li><a href="/notes/">notes</a></li>
+        <li><a href="/about/">about</a></li>
+        <li><a href="/scripts/">scripts</a></li>
+        <li><a href="/data/">data</a></li>
+        <li><a href="/methods/">methods</a></li>
+        <li><a href="/now/">now</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>trust</h4>
+      <ul>
+        <li><a href="/verify/">is this really me?</a></li>
+        <li><a href="/privacy/">privacy</a></li>
+        <li><a href="/.well-known/security.txt">security.txt</a></li>
+        <li><a href="/pgp.txt">pgp key · 17BA…F3AB</a></li>
+        <li><a href="/feed.xml">rss</a> · <a href="/feed.json">json feed</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>elsewhere</h4>
+      <ul>
+        <li><a href="https://x.com/alinaschanz" rel="me noopener">x · @alinaschanz</a></li>
+        <li><a href="https://github.com/alinaschanz" rel="me noopener">github · alinaschanz</a></li>
+        <li><a href="mailto:hello@alinaschanz.life">hello@alinaschanz.life</a></li>
+        <li><a href="https://github.com/alinaschanz/alinaschanz.github.io" rel="noopener">source of this site</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

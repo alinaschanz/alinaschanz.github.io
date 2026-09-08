@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://min-api.cryptocompare.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<title>the scripts — alina schanz</title>
+<meta name="description" content="six public repositories behind the numbers: onchain-notes, gasweek, bigmoves, stablepeg, ens-lookup and this site. python, standard library, no keys. live status from github.">
+<meta name="author" content="alina schanz">
+<meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f11" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://alinaschanz.life/scripts/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="alina schanz">
+<meta property="og:title" content="the scripts — alina schanz">
+<meta property="og:description" content="six public repositories behind the numbers: onchain-notes, gasweek, bigmoves, stablepeg, ens-lookup and this site. python, standard library, no keys. live status from github.">
+<meta property="og:url" content="https://alinaschanz.life/scripts/">
+<meta property="og:image" content="https://alinaschanz.life/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@alinaschanz">
+<meta name="twitter:creator" content="@alinaschanz">
+<meta name="twitter:image" content="https://alinaschanz.life/img/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="application/atom+xml" title="alina schanz — notes" href="/feed.xml">
+<link rel="alternate" type="application/feed+json" title="alina schanz — notes" href="/feed.json">
+<link rel="me" href="https://x.com/alinaschanz">
+<link rel="me" href="https://github.com/alinaschanz">
+<link rel="me" href="mailto:hello@alinaschanz.life">
+<link rel="pgpkey" href="/pgp.txt">
+<link rel="author" href="/about/">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "@id": "https://alinaschanz.life/scripts/#page", "url": "https://alinaschanz.life/scripts/", "name": "the scripts — alina schanz", "isPartOf": {"@id": "https://alinaschanz.life/#site"}, "author": {"@id": "https://alinaschanz.life/#me"}, "hasPart": [{"@type": "SoftwareSourceCode", "name": "onchain-notes", "codeRepository": "https://github.com/alinaschanz/onchain-notes", "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT", "author": {"@id": "https://alinaschanz.life/#me"}}, {"@type": "SoftwareSourceCode", "name": "gasweek", "codeRepository": "https://github.com/alinaschanz/gasweek", "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT", "author": {"@id": "https://alinaschanz.life/#me"}}, {"@type": "SoftwareSourceCode", "name": "bigmoves", "codeRepository": "https://github.com/alinaschanz/bigmoves", "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT", "author": {"@id": "https://alinaschanz.life/#me"}}, {"@type": "SoftwareSourceCode", "name": "stablepeg", "codeRepository": "https://github.com/alinaschanz/stablepeg", "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT", "author": {"@id": "https://alinaschanz.life/#me"}}, {"@type": "SoftwareSourceCode", "name": "ens-lookup", "codeRepository": "https://github.com/alinaschanz/ens-lookup", "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT", "author": {"@id": "https://alinaschanz.life/#me"}}]}, {"@type": "Person", "@id": "https://alinaschanz.life/#me", "name": "Alina Schanz", "url": "https://alinaschanz.life/", "image": "https://alinaschanz.life/img/avatar.jpg", "jobTitle": "Onchain data analyst", "address": {"@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE"}, "email": "mailto:hello@alinaschanz.life", "sameAs": ["https://x.com/alinaschanz", "https://github.com/alinaschanz"], "knowsAbout": ["Ethereum", "Bitcoin", "onchain data", "gas fees", "stablecoins", "ENS"], "identifier": {"@type": "PropertyValue", "propertyID": "OpenPGP fingerprint", "value": "17BA4C393451A56B37B8EDBBF1A6474B431DF3AB"}}]}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="alina schanz, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="var(--accent)"/><path d="M12 42 L22 28 L30 36 L38 22 L46 30 L52 20" fill="none" stroke="var(--accent-ink)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="52" cy="20" r="4" fill="var(--accent-ink)"/></svg>
+      alina schanz
+    </a>
+    <nav aria-label="main">
+      <ul class="menu">
+        <li><a href="/notes/">notes</a></li>
+        <li><a href="/about/">about</a></li>
+        <li><a class="hide-sm" href="/scripts/" aria-current="page">scripts</a></li>
+        <li><a class="hide-sm" href="/data/">data</a></li>
+        <li><a class="ext" href="https://x.com/alinaschanz" rel="me noopener">x</a></li>
+        <li><a class="ext" href="https://github.com/alinaschanz" rel="me noopener">github</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+<article class="article">
+  <div class="crumbs"><a href="/">home</a> / scripts</div>
+  <h1>the scripts</h1>
+  <div class="meta"><span>six repositories, all python 3.10+, standard library only, public endpoints, no keys. status below is read live from github.</span></div>
+
+  <div class="prose">
+    <p class="lede">i keep them public so that a number in a post can be rerun instead of believed. every commit is <a href="/verify/#commits">signed</a>. the tests run on every push on python 3.10, 3.12 and 3.13.</p>
+  </div>
+
+  <div class="repo-cards" id="repo-cards">
+    <div class="repo-card" data-repo="onchain-notes"><h3><a href="https://github.com/alinaschanz/onchain-notes" rel="noopener">onchain-notes</a></h3><p>the numbers i look at before posting anything: prices, base fee, fear &amp; greed, tvl by chain, btc dominance. one card, one screen. plus what a transfer, a swap and a mint cost right now, in cents.</p><div class="row"><span class="st">…</span></div><code>python daily_card.py</code></div>
+    <div class="repo-card" data-repo="gasweek"><h3><a href="https://github.com/alinaschanz/gasweek" rel="noopener">gasweek</a></h3><p>when is ethereum cheapest? the base fee of every block of the last week, binned by hour of day and weekday, as a table and an svg. writes the <a href="/data/">daily dataset</a>.</p><div class="row"><span class="st">…</span></div><code>pip install git+https://github.com/alinaschanz/gasweek &amp;&amp; gasweek --tz +2</code></div>
+    <div class="repo-card" data-repo="bigmoves"><h3><a href="https://github.com/alinaschanz/bigmoves" rel="noopener">bigmoves</a></h3><p>large stablecoin, weth and wbtc transfers in the last n blocks, priced, with exchange and bridge labels. <code>--follow</code> keeps watching.</p><div class="row"><span class="st">…</span></div><code>bigmoves --blocks 50 --min-usd 1000000</code></div>
+    <div class="repo-card" data-repo="stablepeg"><h3><a href="https://github.com/alinaschanz/stablepeg" rel="noopener">stablepeg</a></h3><p>are the stablecoins still a dollar? uniswap v3 spot and a ten-minute twap from the deepest pool, a curve 3pool quote for 100k, coingecko next to it.</p><div class="row"><span class="st">…</span></div><code>stablepeg</code></div>
+    <div class="repo-card" data-repo="ens-lookup"><h3><a href="https://github.com/alinaschanz/ens-lookup" rel="noopener">ens-lookup</a></h3><p>ens names to addresses and back, text records included. pure python, its own keccak-256, reverse lookups confirmed forward.</p><div class="row"><span class="st">…</span></div><code>enslookup vitalik.eth --all-text</code></div>
+    <div class="repo-card" data-repo="alinaschanz.github.io"><h3><a href="https://github.com/alinaschanz/alinaschanz.github.io" rel="noopener">alinaschanz.github.io</a></h3><p>this site. hand-written html and css, no framework, no trackers, no cookies, a content security policy, self-hosted fonts.</p><div class="row"><span class="st">…</span></div><code>git clone https://github.com/alinaschanz/alinaschanz.github.io</code></div>
+  </div>
+
+  <div class="activity">
+    <div class="k">latest commits <span class="muted" id="gh-note"></span></div>
+    <ul class="commits" id="gh-commits"><li class="muted">loading…</li></ul>
+  </div>
+
+  <div class="prose">
+    <p class="fine">status, last push and open issues come from the public github api, fetched by your browser, sixty requests an hour per address. if it says "unavailable", that is the limit, not the code. <a href="/privacy/">privacy</a>.</p>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <h4>alina schanz</h4>
+      <p>onchain data, notes and small scripts. berlin.</p>
+      <p class="fine">© 2026 · not financial advice, ever · no cookies, no analytics, no trackers.<br>last update 8 sep 2026 · <a href="/changelog/">changelog</a> · <a href="/humans.txt">humans.txt</a></p>
+    </div>
+    <div>
+      <h4>around</h4>
+      <ul>
+        <li><a href="/">home</a></li>
+        <li><a href="/notes/">notes</a></li>
+        <li><a href="/about/">about</a></li>
+        <li><a href="/scripts/">scripts</a></li>
+        <li><a href="/data/">data</a></li>
+        <li><a href="/methods/">methods</a></li>
+        <li><a href="/now/">now</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>trust</h4>
+      <ul>
+        <li><a href="/verify/">is this really me?</a></li>
+        <li><a href="/privacy/">privacy</a></li>
+        <li><a href="/.well-known/security.txt">security.txt</a></li>
+        <li><a href="/pgp.txt">pgp key · 17BA…F3AB</a></li>
+        <li><a href="/feed.xml">rss</a> · <a href="/feed.json">json feed</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>elsewhere</h4>
+      <ul>
+        <li><a href="https://x.com/alinaschanz" rel="me noopener">x · @alinaschanz</a></li>
+        <li><a href="https://github.com/alinaschanz" rel="me noopener">github · alinaschanz</a></li>
+        <li><a href="mailto:hello@alinaschanz.life">hello@alinaschanz.life</a></li>
+        <li><a href="https://github.com/alinaschanz/alinaschanz.github.io" rel="noopener">source of this site</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script src="/scripts.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# alina schanz
+
+> onchain data, notes and small scripts. berlin. numbers, not calls.
+
+personal site of alina schanz, an onchain data analyst in berlin. english, lowercase on purpose. every number on the site comes from a public endpoint through a script published on github, python standard library only, no api keys.
+
+## pages
+
+- [home](https://alinaschanz.life/): live bitcoin and ethereum price, ethereum base fee, fear and greed, the latest note
+- [notes](https://alinaschanz.life/notes/): longer notes on onchain data, one or two a month ([atom](https://alinaschanz.life/feed.xml), [json feed](https://alinaschanz.life/feed.json))
+- [about](https://alinaschanz.life/about/): who, the disclosure (no paid posts, no calls, no trading around own notes, sources named, corrections stay visible), what she reads and uses, colophon
+- [methods](https://alinaschanz.life/methods/): which endpoint and which formula produce each number, and what can go wrong
+- [data](https://alinaschanz.life/data/): a daily dataset of the ethereum base fee (min, percentiles, max, cheapest hour), csv on github
+- [scripts](https://alinaschanz.life/scripts/): the six repositories: onchain-notes, gasweek, bigmoves, stablepeg, ens-lookup, the site
+- [verify](https://alinaschanz.life/verify/): the accounts that are her (x @alinaschanz, github alinaschanz, hello@alinaschanz.life), the ones that are not, the openpgp key 17BA4C393451A56B37B8EDBBF1A6474B431DF3AB, how to check a signed commit
+- [privacy](https://alinaschanz.life/privacy/): no cookies, no analytics, no trackers, self-hosted fonts; which public apis the browser calls and a switch to turn them off
+- [now](https://alinaschanz.life/now/), [changelog](https://alinaschanz.life/changelog/)
+
+## elsewhere
+
+- x: https://x.com/alinaschanz
+- github: https://github.com/alinaschanz
+- mail: hello@alinaschanz.life (pgp at https://alinaschanz.life/pgp.txt)

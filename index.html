@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://min-api.cryptocompare.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
 <title>alina schanz — onchain data, berlin</title>
 <meta name="description" content="alina schanz. onchain data, notes and small scripts. berlin. numbers, not calls.">
+<meta name="author" content="alina schanz">
 <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0d0f11" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://alinaschanz.life/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="alina schanz">
 <meta property="og:title" content="alina schanz — onchain data, berlin">
-<meta property="og:description" content="onchain data, notes and small scripts. numbers, not calls.">
+<meta property="og:description" content="alina schanz. onchain data, notes and small scripts. berlin. numbers, not calls.">
 <meta property="og:url" content="https://alinaschanz.life/">
 <meta property="og:image" content="https://alinaschanz.life/img/og.png">
 <meta property="og:image:width" content="1200">
@@ -21,20 +23,23 @@
 <meta name="twitter:creator" content="@alinaschanz">
 <meta name="twitter:image" content="https://alinaschanz.life/img/og.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/img/avatar-160.jpg">
+<link rel="apple-touch-icon" href="/img/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="alternate" type="application/atom+xml" title="alina schanz — notes" href="/feed.xml">
+<link rel="alternate" type="application/feed+json" title="alina schanz — notes" href="/feed.json">
 <link rel="me" href="https://x.com/alinaschanz">
 <link rel="me" href="https://github.com/alinaschanz">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="me" href="mailto:hello@alinaschanz.life">
+<link rel="pgpkey" href="/pgp.txt">
+<link rel="author" href="/about/">
 <link rel="stylesheet" href="/style.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Alina Schanz","url":"https://alinaschanz.life/","image":"https://alinaschanz.life/img/avatar.jpg","jobTitle":"Onchain data analyst","address":{"@type":"PostalAddress","addressLocality":"Berlin","addressCountry":"DE"},"email":"mailto:hello@alinaschanz.life","sameAs":["https://x.com/alinaschanz","https://github.com/alinaschanz"]}
+{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://alinaschanz.life/#site", "url": "https://alinaschanz.life/", "name": "alina schanz", "description": "onchain data, notes and small scripts. berlin. numbers, not calls.", "inLanguage": "en", "publisher": {"@id": "https://alinaschanz.life/#me"}}, {"@type": "Person", "@id": "https://alinaschanz.life/#me", "name": "Alina Schanz", "url": "https://alinaschanz.life/", "image": "https://alinaschanz.life/img/avatar.jpg", "jobTitle": "Onchain data analyst", "address": {"@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE"}, "email": "mailto:hello@alinaschanz.life", "sameAs": ["https://x.com/alinaschanz", "https://github.com/alinaschanz"], "knowsAbout": ["Ethereum", "Bitcoin", "onchain data", "gas fees", "stablecoins", "ENS"], "identifier": {"@type": "PropertyValue", "propertyID": "OpenPGP fingerprint", "value": "17BA4C393451A56B37B8EDBBF1A6474B431DF3AB"}}]}
 </script>
 </head>
 <body>
 
+<a class="skip" href="#main">skip to content</a>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="/" aria-label="alina schanz, home">
@@ -45,7 +50,8 @@
       <ul class="menu">
         <li><a href="/notes/">notes</a></li>
         <li><a href="/about/">about</a></li>
-        <li><a class="hide-sm" href="#scripts">scripts</a></li>
+        <li><a class="hide-sm" href="/scripts/">scripts</a></li>
+        <li><a class="hide-sm" href="/data/">data</a></li>
         <li><a class="ext" href="https://x.com/alinaschanz" rel="me noopener">x</a></li>
         <li><a class="ext" href="https://github.com/alinaschanz" rel="me noopener">github</a></li>
       </ul>
@@ -53,7 +59,7 @@
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main">
 
   <section class="hero" aria-labelledby="name">
     <div class="portrait">
@@ -68,7 +74,7 @@
         <span class="pill" title="berlin, right now"><span class="dotlive" aria-hidden="true"></span>berlin <span id="pill-time" class="mono">--:--</span><span class="muted" id="pill-wx"></span></span>
       </div>
       <p class="lead">i look at chains for a living and for fun. mostly ethereum and what is built on top of it, sometimes bitcoin flows, sometimes solana when it gets loud.</p>
-      <p class="lead">this page is for the longer thoughts. the short ones, with charts, are on x. the scripts i use to pull the numbers are on github. no calls, no financial advice, no paid posts. <a href="/about/#disclosure">how i work</a>.</p>
+      <p class="lead">this page is for the longer thoughts. the short ones, with charts, are on x. the scripts i use to pull the numbers are on github. no calls, no financial advice, no paid posts. <a href="/about/#disclosure">how i work</a> · <a href="/verify/">how to check it is me</a>.</p>
       <div class="cta">
         <a class="btn primary" href="/notes/">read the notes
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -141,14 +147,14 @@
         <div class="k">from the note</div>
         <p class="quote">“cheap gas is not a bug. the transactions left, the money stayed.”</p>
         <div class="k">numbers that night</div>
-        <div class="mono muted" style="font-size:13px;line-height:1.8">btc $79,172 · eth $2,488<br>base fee 0.068 gwei<br>fear &amp; greed 71 · dominance 59.1%</div>
+        <div class="mono muted nums">btc $79,172 · eth $2,488<br>base fee 0.068 gwei<br>fear &amp; greed 71 · dominance 59.1%</div>
       </div>
     </div>
   </section>
 
   <section id="scripts" aria-labelledby="scripts-h">
     <div class="label"><b>04</b>scripts</div>
-    <div class="sec-head"><h2 id="scripts-h">the scripts behind the numbers</h2><a href="https://github.com/alinaschanz" rel="me noopener">github.com/alinaschanz ↗</a></div>
+    <div class="sec-head"><h2 id="scripts-h">the scripts behind the numbers</h2><a href="/scripts/">all scripts, live status →</a></div>
     <div class="term-win">
       <div class="term-bar"><i></i><i></i><i></i><span>daily_card.py — onchain-notes</span></div>
 <pre class="term" aria-label="sample output of daily_card.py"><span class="cmd">python daily_card.py</span>
@@ -170,13 +176,17 @@ tvl  ethereum $49.6b / solana $5.9b / bsc $5.7b / base $5.6b / tron $5.5b</pre>
       <li><a href="https://github.com/alinaschanz/ens-lookup" rel="noopener">ens-lookup</a><span>ens names to addresses and back, text records included. pure python, keccak and all.</span></li>
       <li><a href="https://github.com/alinaschanz/alinaschanz.github.io" rel="noopener">alinaschanz.github.io</a><span>this page. hand-written html and css, no framework, no trackers, no cookies.</span></li>
     </ul>
+    <div class="activity">
+      <div class="k">latest on github <span class="muted" id="gh-note"></span></div>
+      <ul class="commits" id="gh-commits"><li class="muted">loading…</li></ul>
+    </div>
   </section>
 
   <section aria-labelledby="now-h">
     <div class="label"><b>05</b>now</div>
     <div class="now">
       <div class="card">
-        <h3 id="now-h" style="font-size:22px;margin-bottom:10px">this week</h3>
+        <h3 id="now-h" class="h">this week</h3>
         <p>reading more than trading. berlin, september, the spree is still warm enough to sit next to. gas is so cheap that i keep refreshing it like a weather app.</p>
         <div class="when">updated 7 sep 2026</div>
       </div>
@@ -186,6 +196,7 @@ tvl  ethereum $49.6b / solana $5.9b / bsc $5.7b / base $5.6b / tron $5.5b</pre>
           <a href="https://x.com/alinaschanz" rel="me noopener"><span>x</span><span>@alinaschanz</span></a>
           <a href="https://github.com/alinaschanz" rel="me noopener"><span>github</span><span>alinaschanz</span></a>
           <a href="mailto:hello@alinaschanz.life"><span>mail</span><span>hello@alinaschanz.life</span></a>
+          <a href="/verify/"><span>is this really me?</span><span>pgp 17BA…F3AB</span></a>
         </div>
       </div>
     </div>
@@ -198,15 +209,28 @@ tvl  ethereum $49.6b / solana $5.9b / bsc $5.7b / base $5.6b / tron $5.5b</pre>
     <div>
       <h4>alina schanz</h4>
       <p>onchain data, notes and small scripts. berlin.</p>
-      <p class="fine">© 2026 · not financial advice, ever · no cookies, no analytics, no trackers.<br>last update 8 sep 2026 · <a href="/humans.txt">humans.txt</a></p>
+      <p class="fine">© 2026 · not financial advice, ever · no cookies, no analytics, no trackers.<br>last update 8 sep 2026 · <a href="/changelog/">changelog</a> · <a href="/humans.txt">humans.txt</a></p>
     </div>
     <div>
       <h4>around</h4>
       <ul>
+        <li><a href="/">home</a></li>
         <li><a href="/notes/">notes</a></li>
         <li><a href="/about/">about</a></li>
-        <li><a href="/#scripts">scripts</a></li>
-        <li><a href="/feed.xml">rss</a></li>
+        <li><a href="/scripts/">scripts</a></li>
+        <li><a href="/data/">data</a></li>
+        <li><a href="/methods/">methods</a></li>
+        <li><a href="/now/">now</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>trust</h4>
+      <ul>
+        <li><a href="/verify/">is this really me?</a></li>
+        <li><a href="/privacy/">privacy</a></li>
+        <li><a href="/.well-known/security.txt">security.txt</a></li>
+        <li><a href="/pgp.txt">pgp key · 17BA…F3AB</a></li>
+        <li><a href="/feed.xml">rss</a> · <a href="/feed.json">json feed</a></li>
       </ul>
     </div>
     <div>

@@ -1,0 +1,29 @@
+{
+  "name": "alina schanz — onchain data, berlin",
+  "short_name": "alina schanz",
+  "description": "onchain data, notes and small scripts. berlin. numbers, not calls.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "lang": "en",
+  "background_color": "#f4f2ec",
+  "theme_color": "#146c66",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

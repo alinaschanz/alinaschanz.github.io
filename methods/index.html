@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://min-api.cryptocompare.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<title>where the numbers come from — alina schanz</title>
+<meta name="description" content="every figure on this site, with the endpoint and the formula behind it: prices, base fee, gasweek, bigmoves, stablepeg, ens-lookup, and what can go wrong.">
+<meta name="author" content="alina schanz">
+<meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f11" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://alinaschanz.life/methods/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="alina schanz">
+<meta property="og:title" content="where the numbers come from — alina schanz">
+<meta property="og:description" content="every figure on this site, with the endpoint and the formula behind it: prices, base fee, gasweek, bigmoves, stablepeg, ens-lookup, and what can go wrong.">
+<meta property="og:url" content="https://alinaschanz.life/methods/">
+<meta property="og:image" content="https://alinaschanz.life/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@alinaschanz">
+<meta name="twitter:creator" content="@alinaschanz">
+<meta name="twitter:image" content="https://alinaschanz.life/img/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="application/atom+xml" title="alina schanz — notes" href="/feed.xml">
+<link rel="alternate" type="application/feed+json" title="alina schanz — notes" href="/feed.json">
+<link rel="me" href="https://x.com/alinaschanz">
+<link rel="me" href="https://github.com/alinaschanz">
+<link rel="me" href="mailto:hello@alinaschanz.life">
+<link rel="pgpkey" href="/pgp.txt">
+<link rel="author" href="/about/">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://alinaschanz.life/methods/#page", "url": "https://alinaschanz.life/methods/", "name": "where the numbers come from — alina schanz", "isPartOf": {"@id": "https://alinaschanz.life/#site"}, "author": {"@id": "https://alinaschanz.life/#me"}}, {"@type": "Person", "@id": "https://alinaschanz.life/#me", "name": "Alina Schanz", "url": "https://alinaschanz.life/", "image": "https://alinaschanz.life/img/avatar.jpg", "jobTitle": "Onchain data analyst", "address": {"@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE"}, "email": "mailto:hello@alinaschanz.life", "sameAs": ["https://x.com/alinaschanz", "https://github.com/alinaschanz"], "knowsAbout": ["Ethereum", "Bitcoin", "onchain data", "gas fees", "stablecoins", "ENS"], "identifier": {"@type": "PropertyValue", "propertyID": "OpenPGP fingerprint", "value": "17BA4C393451A56B37B8EDBBF1A6474B431DF3AB"}}]}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="alina schanz, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="var(--accent)"/><path d="M12 42 L22 28 L30 36 L38 22 L46 30 L52 20" fill="none" stroke="var(--accent-ink)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="52" cy="20" r="4" fill="var(--accent-ink)"/></svg>
+      alina schanz
+    </a>
+    <nav aria-label="main">
+      <ul class="menu">
+        <li><a href="/notes/">notes</a></li>
+        <li><a href="/about/">about</a></li>
+        <li><a class="hide-sm" href="/scripts/">scripts</a></li>
+        <li><a class="hide-sm" href="/data/">data</a></li>
+        <li><a class="ext" href="https://x.com/alinaschanz" rel="me noopener">x</a></li>
+        <li><a class="ext" href="https://github.com/alinaschanz" rel="me noopener">github</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+<article class="article">
+  <div class="crumbs"><a href="/">home</a> / methods</div>
+  <h1>where the numbers come from</h1>
+  <div class="meta"><span>every figure on this site or in a post, with the endpoint and the formula behind it.</span></div>
+
+  <div class="prose">
+    <p class="lede">a number without a method is an opinion with digits. this page is the method. it is boring on purpose.</p>
+
+    <h2 id="rules">the rules</h2>
+    <ul>
+      <li>public endpoints only. no api keys, no private feeds, no data i cannot show you how to fetch.</li>
+      <li>python 3.10 or newer, standard library only. nothing to install, nothing that can quietly change under me.</li>
+      <li>every script prints the block number or timestamp it read, so a number can be pinned to a moment.</li>
+      <li>when a source is rate limited, the script falls back to another public source and says so. it never fills a gap with a guess.</li>
+    </ul>
+
+    <h2 id="sources">sources</h2>
+    <div class="data-wrap"><table class="src">
+      <tr><th>number</th><th>source</th><th>how</th></tr>
+      <tr><td>btc, eth, sol price</td><td>coingecko <code>simple/price</code></td><td>usd, with the 24-hour change the api reports. the 7-day chart on the front page uses coingecko <code>market_chart</code>, and coinbase hourly candles or cryptocompare when coingecko limits your ip.</td></tr>
+      <tr><td>eth base fee</td><td>public json-rpc, <code>eth_feeHistory</code></td><td>the base fee of the next block, straight from the chain. blob base fee from the same call. nodes tried in order: publicnode, drpc, mevblocker.</td></tr>
+      <tr><td>what a transfer costs</td><td>same call, last 20 blocks</td><td>base fee plus the median priority fee of the last 20 blocks, times 21,000 gas for a transfer, times the eth price.</td></tr>
+      <tr><td>fear &amp; greed</td><td>alternative.me <code>fng</code></td><td>today's value and the value seven days back. it is their index, not mine.</td></tr>
+      <tr><td>tvl by chain</td><td>defillama <code>v2/chains</code></td><td>as reported. i quote it, i do not recompute it.</td></tr>
+      <tr><td>btc dominance</td><td>coingecko <code>global</code></td><td>as reported.</td></tr>
+      <tr><td>berlin weather</td><td>open-meteo</td><td>current temperature and weather code for 52.52, 13.405. purely decorative.</td></tr>
+    </table></div>
+
+    <h2 id="gasweek">gasweek: when is ethereum cheapest</h2>
+    <p><code>eth_feeHistory</code> is paged 1,024 blocks at a time until a week is covered, 50,400 blocks. base fees are exact per block. block timestamps are only fetched for the first and last block of each page and interpolated in between, so the hour a block lands in is right to within a few seconds, never to the second. the base fees are then binned by hour of day and by weekday and summarised as min, p25, median, p75, p90 and max. the <a href="/data/">daily dataset</a> is one such row per day, written at 00:17 utc by a github workflow, with the block range it covered.</p>
+
+    <h2 id="bigmoves">bigmoves: large transfers</h2>
+    <p><code>eth_getLogs</code> for the erc-20 <code>Transfer</code> topic over windows of 25 blocks, for usdt, usdc, dai, weth, wbtc and a few more. symbol and decimals are read from each contract, not assumed. weth and wbtc are priced with coingecko, the stablecoins at one dollar. addresses are named from a public label set (the 2023 etherscan labels dataset) plus a short list i maintain by hand: exchange hot and cold wallets, bridges, routers, a lending pool. a label is a hint about who an address is, never proof.</p>
+
+    <h2 id="stablepeg">stablepeg: are the stablecoins still a dollar</h2>
+    <p>for each coin the uniswap v3 factory is asked for the pool against usdc at every fee tier, the pool with the most liquidity wins, its <code>slot0</code> gives the spot price and <code>observe()</code> a ten-minute time-weighted average. ten minutes is short on purpose: the question is "now", not "this month". curve 3pool answers what 100,000 usdt or dai returns in usdc through <code>get_dy</code>. coingecko sits in the last column as a sanity check. anything fifty basis points or more off gets a flag; frax and lusd wear it most weeks and that is not news.</p>
+
+    <h2 id="ens">ens-lookup: names and addresses</h2>
+    <p>namehash needs keccak-256, and python ships nist sha3 which pads differently, so the package carries its own keccak, checked against hashlib and the published test vectors. lookups go registry → resolver → <code>addr</code> or <code>text</code>. reverse lookups are confirmed with a forward lookup before they are shown, because a reverse record alone can say anything.</p>
+
+    <h2 id="limits">what can go wrong</h2>
+    <ul>
+      <li>public nodes lag a block or two and sometimes disagree with each other for a moment. the block number is printed so you can tell.</li>
+      <li>a base fee is what the chain charges, not what you pay. the tip is on top, and wallets overestimate it.</li>
+      <li>percentiles over a week hide the spikes. the max column exists for that reason.</li>
+      <li>labels age. an exchange rotates a wallet and the label stays on the old one.</li>
+      <li>coingecko limits requests per ip, so the front page may show the fallback source. the caption says which.</li>
+    </ul>
+
+    <h2 id="rerun">rerun it</h2>
+<pre class="code">git clone https://github.com/alinaschanz/onchain-notes
+cd onchain-notes
+python daily_card.py</pre>
+    <p>if the card does not match a post of mine from the same hour, write to <a href="mailto:hello@alinaschanz.life">hello@alinaschanz.life</a>. mistakes go on the <a href="/about/#corrections">corrections list</a>, the post stays up.</p>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <h4>alina schanz</h4>
+      <p>onchain data, notes and small scripts. berlin.</p>
+      <p class="fine">© 2026 · not financial advice, ever · no cookies, no analytics, no trackers.<br>last update 8 sep 2026 · <a href="/changelog/">changelog</a> · <a href="/humans.txt">humans.txt</a></p>
+    </div>
+    <div>
+      <h4>around</h4>
+      <ul>
+        <li><a href="/">home</a></li>
+        <li><a href="/notes/">notes</a></li>
+        <li><a href="/about/">about</a></li>
+        <li><a href="/scripts/">scripts</a></li>
+        <li><a href="/data/">data</a></li>
+        <li><a href="/methods/">methods</a></li>
+        <li><a href="/now/">now</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>trust</h4>
+      <ul>
+        <li><a href="/verify/">is this really me?</a></li>
+        <li><a href="/privacy/">privacy</a></li>
+        <li><a href="/.well-known/security.txt">security.txt</a></li>
+        <li><a href="/pgp.txt">pgp key · 17BA…F3AB</a></li>
+        <li><a href="/feed.xml">rss</a> · <a href="/feed.json">json feed</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>elsewhere</h4>
+      <ul>
+        <li><a href="https://x.com/alinaschanz" rel="me noopener">x · @alinaschanz</a></li>
+        <li><a href="https://github.com/alinaschanz" rel="me noopener">github · alinaschanz</a></li>
+        <li><a href="mailto:hello@alinaschanz.life">hello@alinaschanz.life</a></li>
+        <li><a href="https://github.com/alinaschanz/alinaschanz.github.io" rel="noopener">source of this site</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

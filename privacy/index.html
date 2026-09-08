@@ -4,18 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://min-api.cryptocompare.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
-<title>not found — alina schanz</title>
-<meta name="description" content="nothing here.">
+<title>privacy — alina schanz</title>
+<meta name="description" content="no cookies, no analytics, no trackers, self-hosted fonts. which public apis your browser calls for the live numbers, and the switch to turn them off.">
 <meta name="author" content="alina schanz">
-<meta name="robots" content="noindex">
 <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0d0f11" media="(prefers-color-scheme: dark)">
-<link rel="canonical" href="https://alinaschanz.life/404.html">
+<link rel="canonical" href="https://alinaschanz.life/privacy/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="alina schanz">
-<meta property="og:title" content="not found — alina schanz">
-<meta property="og:description" content="nothing here.">
-<meta property="og:url" content="https://alinaschanz.life/404.html">
+<meta property="og:title" content="privacy — alina schanz">
+<meta property="og:description" content="no cookies, no analytics, no trackers, self-hosted fonts. which public apis your browser calls for the live numbers, and the switch to turn them off.">
+<meta property="og:url" content="https://alinaschanz.life/privacy/">
 <meta property="og:image" content="https://alinaschanz.life/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -58,12 +57,44 @@
 </header>
 
 <main class="wrap" id="main">
-  <section class="oops">
-    <div class="mono muted">404</div>
-    <h1>nothing here.</h1>
-    <p>the block you are looking for got reorged. or i typed the link wrong, which is more likely.</p>
-    <a class="btn primary" href="/">back home</a>
-  </section>
+<article class="article">
+  <div class="crumbs"><a href="/">home</a> / privacy</div>
+  <h1>privacy</h1>
+  <div class="meta"><span>what this site does with you, which is close to nothing, and the one switch you have.</span></div>
+
+  <div class="prose">
+    <p class="lede">no cookies, no analytics, no trackers, no font network, no comment widget, no newsletter pixel. i do not know you were here, and i like it that way.</p>
+
+    <h2 id="switch">live numbers</h2>
+    <p>the front page, the data page and the scripts page ask public apis for numbers, from your browser, when you open them. each of those requests carries your ip address to that host, the same way any page load does. the hosts are listed below and nowhere else, and the page cannot talk to any other host: a content security policy in every page names exactly these.</p>
+    <div class="switch"><span id="live-state">live numbers are <b>on</b>.</span><button type="button" id="live-toggle">turn them off</button></div>
+    <p class="fine-top">the switch is stored as one word in your browser's local storage, on your side only. no cookie, nothing sent anywhere.</p>
+
+    <h2 id="hosts">who your browser talks to, and why</h2>
+    <div class="data-wrap"><table class="src">
+      <tr><th>host</th><th>page</th><th>for</th></tr>
+      <tr><td>api.coingecko.com</td><td>home</td><td>bitcoin and ethereum price, the 7-day chart</td></tr>
+      <tr><td>api.exchange.coinbase.com, min-api.cryptocompare.com</td><td>home</td><td>the 7-day chart, only if coingecko refuses</td></tr>
+      <tr><td>api.alternative.me</td><td>home</td><td>fear &amp; greed</td></tr>
+      <tr><td>ethereum-rpc.publicnode.com, eth.drpc.org, rpc.mevblocker.io</td><td>home</td><td>the base fee of the next block; tried in that order</td></tr>
+      <tr><td>api.open-meteo.com</td><td>home</td><td>berlin temperature and sky</td></tr>
+      <tr><td>api.github.com</td><td>home, scripts</td><td>my latest commits, repository status</td></tr>
+      <tr><td>raw.githubusercontent.com</td><td>data</td><td>the daily base fee dataset</td></tr>
+    </table></div>
+
+    <h2 id="hosting">hosting</h2>
+    <p>the files are served by github pages through cloudflare. both keep the usual server logs (ip address, page, time) for their own operation; i do not receive them and could not read them if i wanted to. the fonts are files on this site, so nothing is fetched from a font provider.</p>
+
+    <h2 id="mail">mail</h2>
+    <p>hello@alinaschanz.life is forwarded to a mailbox i read. i keep a mail as long as the conversation lasts and do not share it. encrypt with <a href="/pgp.txt">my key</a> if you prefer.</p>
+
+    <h2 id="links">links to elsewhere</h2>
+    <p>links to x and github are plain links. there is no share button that loads their script, only a link that opens their page when you click it.</p>
+
+    <h2 id="changes">changes</h2>
+    <p>if any of this changes, it is written here and in the <a href="/changelog/">changelog</a> first. last checked 8 sep 2026.</p>
+  </div>
+</article>
 </main>
 
 <footer>
@@ -107,5 +138,6 @@
   </div>
 </footer>
 
+<script src="/privacy.js" defer></script>
 </body>
 </html>

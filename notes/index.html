@@ -3,28 +3,43 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://min-api.cryptocompare.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
 <title>notes — alina schanz</title>
 <meta name="description" content="longer notes on onchain data by alina schanz. numbers, not calls.">
+<meta name="author" content="alina schanz">
 <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0d0f11" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://alinaschanz.life/notes/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="alina schanz">
 <meta property="og:title" content="notes — alina schanz">
-<meta property="og:description" content="longer notes on onchain data. numbers, not calls.">
+<meta property="og:description" content="longer notes on onchain data by alina schanz. numbers, not calls.">
 <meta property="og:url" content="https://alinaschanz.life/notes/">
 <meta property="og:image" content="https://alinaschanz.life/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@alinaschanz">
+<meta name="twitter:creator" content="@alinaschanz">
+<meta name="twitter:image" content="https://alinaschanz.life/img/og.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="alternate" type="application/atom+xml" title="alina schanz — notes" href="/feed.xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="alternate" type="application/feed+json" title="alina schanz — notes" href="/feed.json">
+<link rel="me" href="https://x.com/alinaschanz">
+<link rel="me" href="https://github.com/alinaschanz">
+<link rel="me" href="mailto:hello@alinaschanz.life">
+<link rel="pgpkey" href="/pgp.txt">
+<link rel="author" href="/about/">
 <link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "Blog", "@id": "https://alinaschanz.life/notes/#blog", "url": "https://alinaschanz.life/notes/", "name": "alina schanz — notes", "description": "longer notes on onchain data. numbers, not calls.", "inLanguage": "en", "author": {"@id": "https://alinaschanz.life/#me"}, "publisher": {"@id": "https://alinaschanz.life/#me"}, "blogPost": [{"@type": "BlogPosting", "@id": "https://alinaschanz.life/notes/2026-09-07-gas-at-0-07-gwei.html#post"}]}, {"@type": "Person", "@id": "https://alinaschanz.life/#me", "name": "Alina Schanz", "url": "https://alinaschanz.life/", "image": "https://alinaschanz.life/img/avatar.jpg", "jobTitle": "Onchain data analyst", "address": {"@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE"}, "email": "mailto:hello@alinaschanz.life", "sameAs": ["https://x.com/alinaschanz", "https://github.com/alinaschanz"], "knowsAbout": ["Ethereum", "Bitcoin", "onchain data", "gas fees", "stablecoins", "ENS"], "identifier": {"@type": "PropertyValue", "propertyID": "OpenPGP fingerprint", "value": "17BA4C393451A56B37B8EDBBF1A6474B431DF3AB"}}]}
+</script>
 </head>
 <body>
 
+<a class="skip" href="#main">skip to content</a>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="/" aria-label="alina schanz, home">
@@ -33,9 +48,10 @@
     </a>
     <nav aria-label="main">
       <ul class="menu">
-        <li><a href="/notes/">notes</a></li>
+        <li><a href="/notes/" aria-current="page">notes</a></li>
         <li><a href="/about/">about</a></li>
-        <li><a class="hide-sm" href="/#scripts">scripts</a></li>
+        <li><a class="hide-sm" href="/scripts/">scripts</a></li>
+        <li><a class="hide-sm" href="/data/">data</a></li>
         <li><a class="ext" href="https://x.com/alinaschanz" rel="me noopener">x</a></li>
         <li><a class="ext" href="https://github.com/alinaschanz" rel="me noopener">github</a></li>
       </ul>
@@ -43,7 +59,7 @@
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main">
   <section class="article" aria-labelledby="notes-h">
     <div class="crumbs"><a href="/">home</a> / notes</div>
     <h1 id="notes-h">notes</h1>
@@ -54,8 +70,8 @@
           <time datetime="2026-09-07">7 sep 2026</time>
           <span>
             <span class="t">0.07 gwei. what an empty mainnet costs</span>
-            <span class="d" style="display:block">base fee at the floor, tvl still on L1, greed at 71 while the price goes nowhere.</span>
-            <span class="m" style="display:block">4 min read</span>
+            <span class="d">base fee at the floor, tvl still on L1, greed at 71 while the price goes nowhere.</span>
+            <span class="m">4 min read</span>
           </span>
         </a>
       </li>
@@ -68,7 +84,7 @@
     <div>
       <h4>alina schanz</h4>
       <p>onchain data, notes and small scripts. berlin.</p>
-      <p class="fine">© 2026 · not financial advice, ever · no cookies, no analytics, no trackers.<br>last update 8 sep 2026 · <a href="/humans.txt">humans.txt</a></p>
+      <p class="fine">© 2026 · not financial advice, ever · no cookies, no analytics, no trackers.<br>last update 8 sep 2026 · <a href="/changelog/">changelog</a> · <a href="/humans.txt">humans.txt</a></p>
     </div>
     <div>
       <h4>around</h4>
@@ -76,7 +92,20 @@
         <li><a href="/">home</a></li>
         <li><a href="/notes/">notes</a></li>
         <li><a href="/about/">about</a></li>
-        <li><a href="/feed.xml">rss</a></li>
+        <li><a href="/scripts/">scripts</a></li>
+        <li><a href="/data/">data</a></li>
+        <li><a href="/methods/">methods</a></li>
+        <li><a href="/now/">now</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>trust</h4>
+      <ul>
+        <li><a href="/verify/">is this really me?</a></li>
+        <li><a href="/privacy/">privacy</a></li>
+        <li><a href="/.well-known/security.txt">security.txt</a></li>
+        <li><a href="/pgp.txt">pgp key · 17BA…F3AB</a></li>
+        <li><a href="/feed.xml">rss</a> · <a href="/feed.json">json feed</a></li>
       </ul>
     </div>
     <div>
@@ -90,5 +119,6 @@
     </div>
   </div>
 </footer>
+
 </body>
 </html>
