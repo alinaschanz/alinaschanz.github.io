@@ -12,7 +12,7 @@ personal site of alina schanz, an onchain data analyst in berlin. english, lower
 - [methods](https://alinaschanz.life/methods/): which endpoint and which formula produce each number, and what can go wrong
 - [data](https://alinaschanz.life/data/): a daily dataset of the ethereum base fee (min, percentiles, max, cheapest hour), csv on github
 - [scripts](https://alinaschanz.life/scripts/): the six repositories: onchain-notes, gasweek, bigmoves, stablepeg, ens-lookup, the site
-- [verify](https://alinaschanz.life/verify/): the accounts that are her (x @alinaschanz, github alinaschanz, hello@alinaschanz.life), the ones that are not, the openpgp key 17BA4C393451A56B37B8EDBBF1A6474B431DF3AB, how to check a signed commit, the opentimestamps proof next to every note
+- [verify](https://alinaschanz.life/verify/): the accounts that are her (x @alinaschanz, github alinaschanz, hello@alinaschanz.life), the ones that are not, the openpgp key 17BA4C393451A56B37B8EDBBF1A6474B431DF3AB, how to check a signed commit, the opentimestamps proof next to every note, the keyoxide proofs of the key
 - [privacy](https://alinaschanz.life/privacy/): no cookies, no analytics, no trackers, self-hosted fonts; which public apis the browser calls and a switch to turn them off
 - [now](https://alinaschanz.life/now/), [changelog](https://alinaschanz.life/changelog/)
 

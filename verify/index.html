@@ -104,6 +104,9 @@ curl -sO https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html.ots
 ots verify 2026-09-08-week-37-in-numbers.html.ots</pre>
     <p><code>ots</code> is <code>pip install opentimestamps-client</code>; checking the block needs a bitcoin node, or drop both files on opentimestamps.org and let the page do it. a fresh proof reads "pending" for a few hours until a block covers it; after that it is final.</p>
 
+    <h2 id="proofs">let somebody else check</h2>
+    <p>the key above carries two machine-readable proofs in the <a href="https://ariadne.id" rel="noopener">ariadne</a> format: a gist on my github account and a txt record on this domain, each naming the key's fingerprint. <a href="https://keyoxide.org/hello@alinaschanz.life" rel="noopener">keyoxide</a> fetches the key through this domain and checks both in your browser, with nothing of mine in the loop. the key is also on <a href="https://keys.openpgp.org/search?q=17BA4C393451A56B37B8EDBBF1A6474B431DF3AB" rel="noopener">keys.openpgp.org</a>.</p>
+
     <h2 id="security">found a problem?</h2>
     <p>this site has a <a href="/.well-known/security.txt">security.txt</a>, signed with the same key. it says the same thing as this page: write to hello@alinaschanz.life, encrypted if you like.</p>
   </div>
