@@ -97,6 +97,13 @@ git log --show-signature -1</pre>
     <h2 id="numbers">check a number</h2>
     <p>every number in a note or a post comes from a script in one of the <a href="/scripts/">repositories</a>. the <a href="/methods/">methods page</a> says which endpoint and which formula. if a rerun gives you something else, the note is wrong and i want to know.</p>
 
+    <h2 id="notes">check a note</h2>
+    <p>every note on this site has an <a href="https://opentimestamps.org" rel="noopener">opentimestamps</a> proof next to it: the same file name with <code>.ots</code> at the end. it proves the note existed, byte for byte, before a certain bitcoin block, without anybody having to trust me or this server. a note that changes gets a new proof, and the change goes in the <a href="/changelog/">changelog</a>.</p>
+<pre class="code">curl -sO https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html
+curl -sO https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html.ots
+ots verify 2026-09-08-week-37-in-numbers.html.ots</pre>
+    <p><code>ots</code> is <code>pip install opentimestamps-client</code>; checking the block needs a bitcoin node, or drop both files on opentimestamps.org and let the page do it. a fresh proof reads "pending" for a few hours until a block covers it; after that it is final.</p>
+
     <h2 id="security">found a problem?</h2>
     <p>this site has a <a href="/.well-known/security.txt">security.txt</a>, signed with the same key. it says the same thing as this page: write to hello@alinaschanz.life, encrypted if you like.</p>
   </div>
