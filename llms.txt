@@ -8,7 +8,7 @@ personal site of alina schanz, an onchain data analyst in berlin. english, lower
 
 - [home](https://alinaschanz.life/): live bitcoin and ethereum price, ethereum base fee, fear and greed, the latest note
 - [notes](https://alinaschanz.life/notes/): longer notes on onchain data, one or two a month ([atom](https://alinaschanz.life/feed.xml), [json feed](https://alinaschanz.life/feed.json))
-- [about](https://alinaschanz.life/about/): who, the disclosure (no paid posts, no calls, no trading around own notes, sources named, corrections stay visible, notes and scripts drafted with an llm, every number from a rerunnable script), the timeline (x account from january 2015: a personal feed in german for about a year, then nothing until 2026; site, github account and pgp key all from september 2026, account age is not a credential), corrections, what she reads and uses, colophon
+- [about](https://alinaschanz.life/about/): who, the disclosure (no paid posts, no calls, no trading around own notes, sources named, corrections stay visible, notes and scripts drafted with an llm, every number from a rerunnable script), the timeline (x account registered january 2015; site, github account and pgp key all from september 2026; account age is not a credential), corrections, what she reads and uses, colophon
 - [methods](https://alinaschanz.life/methods/): which endpoint and which formula produce each number, and what can go wrong
 - [data](https://alinaschanz.life/data/): a daily dataset of the ethereum base fee (min, percentiles, max, cheapest hour), csv on github
 - [scripts](https://alinaschanz.life/scripts/): the six repositories: onchain-notes, gasweek, bigmoves, stablepeg, ens-lookup, the site
