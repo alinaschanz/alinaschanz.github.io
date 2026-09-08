@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>alina schanz — onchain data, berlin</title>
+<meta name="description" content="alina schanz. onchain data, notes and small scripts. berlin. numbers, not calls.">
+<meta name="theme-color" content="#f6f5f0" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1012" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://alinaschanz.life/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="alina schanz">
+<meta property="og:title" content="alina schanz — onchain data, berlin">
+<meta property="og:description" content="onchain data, notes and small scripts. numbers, not calls.">
+<meta property="og:url" content="https://alinaschanz.life/">
+<meta property="og:image" content="https://alinaschanz.life/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@alinaschanz">
+<meta name="twitter:creator" content="@alinaschanz">
+<meta name="twitter:image" content="https://alinaschanz.life/img/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/avatar-160.jpg">
+<link rel="alternate" type="application/atom+xml" title="alina schanz — notes" href="/feed.xml">
+<link rel="me" href="https://x.com/alinaschanz">
+<link rel="me" href="https://github.com/alinaschanz">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Alina Schanz","url":"https://alinaschanz.life/","image":"https://alinaschanz.life/img/avatar.jpg","jobTitle":"Onchain data analyst","address":{"@type":"PostalAddress","addressLocality":"Berlin","addressCountry":"DE"},"email":"mailto:alinaschanz@proton.me","sameAs":["https://x.com/alinaschanz","https://github.com/alinaschanz"]}
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="alina schanz, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="var(--accent)"/><path d="M12 42 L22 28 L30 36 L38 22 L46 30 L52 20" fill="none" stroke="var(--accent-ink)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="52" cy="20" r="4" fill="var(--accent-ink)"/></svg>
+      alina schanz
+    </a>
+    <nav aria-label="main">
+      <ul class="menu">
+        <li><a href="/notes/">notes</a></li>
+        <li><a class="hide-sm" href="#scripts">scripts</a></li>
+        <li><a class="ext" href="https://x.com/alinaschanz" rel="me noopener">x</a></li>
+        <li><a class="ext" href="https://github.com/alinaschanz" rel="me noopener">github</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" aria-labelledby="name">
+    <img class="avatar" src="/img/avatar.jpg" width="112" height="112" alt="alina schanz">
+    <div>
+      <h1 id="name">alina schanz</h1>
+      <div class="kicker">
+        <span>onchain data</span><span class="dot"></span>
+        <span>notes</span><span class="dot"></span>
+        <span>berlin</span>
+      </div>
+      <p class="lead">i look at chains for a living and for fun. mostly ethereum and what is built on top of it, sometimes bitcoin flows, sometimes solana when it gets loud.</p>
+      <p class="lead">this page is for the longer thoughts. the short ones, with charts, are on x. the scripts i use to pull the numbers are on github. no calls, no financial advice. numbers and what i think they mean.</p>
+      <div class="cta">
+        <a class="btn primary" href="/notes/">read the notes
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn" href="https://x.com/alinaschanz" rel="me noopener">follow on x</a>
+        <a class="btn" href="mailto:alinaschanz@proton.me">say hi</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="live-h">
+    <div class="live">
+      <div class="live-head">
+        <span><span class="pulse" aria-hidden="true"></span><b id="live-h">the chain, right now</b></span>
+        <span id="live-at" class="mono">loading…</span>
+      </div>
+      <div class="tiles">
+        <div class="tile"><div class="k">bitcoin</div><div class="v skeleton" id="btc-v">$00,000</div><div class="s skeleton" id="btc-s">+0.0% · 24h</div></div>
+        <div class="tile"><div class="k">ethereum</div><div class="v skeleton" id="eth-v">$0,000</div><div class="s skeleton" id="eth-s">+0.0% · 24h</div></div>
+        <div class="tile"><div class="k">eth base fee</div><div class="v skeleton" id="gas-v">0.00 gwei</div><div class="s skeleton" id="gas-s">blob 0.00 gwei</div></div>
+        <div class="tile"><div class="k">fear &amp; greed</div><div class="v skeleton" id="fng-v">00</div><div class="s skeleton" id="fng-s">greed · 00 a week ago</div></div>
+      </div>
+      <div class="spark">
+        <svg id="spark" viewBox="0 0 600 64" preserveAspectRatio="none" role="img" aria-label="bitcoin price, last 7 days"></svg>
+        <div class="tile s mono" id="spark-cap" style="padding:0;border:0;font-size:12.5px;color:var(--muted)">btc, 7 days</div>
+      </div>
+      <div class="live-foot">coingecko · alternative.me · public ethereum rpc. read in your browser, nothing is stored. <noscript>live numbers need javascript.</noscript></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="do-h">
+    <div class="sec-head"><h2 id="do-h">what i do</h2></div>
+    <div class="cards">
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-6 4 4 5-8"/></svg></div>
+        <h3>read the chain</h3>
+        <p>block explorers, fee markets, flows between wallets and exchanges. the boring public numbers that are usually right before the timeline is.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></div>
+        <h3>write it down</h3>
+        <p>a note when a number does not fit the story. once or twice a month, never longer than a coffee. old notes stay up, including the wrong ones.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"/></svg></div>
+        <h3>keep the scripts public</h3>
+        <p>small python, standard library, public endpoints, no keys. anyone can rerun the number instead of trusting the sentence.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="notes-h">
+    <div class="sec-head"><h2 id="notes-h">notes</h2><a href="/feed.xml">rss</a></div>
+    <ul class="notes">
+      <li>
+        <a class="row" href="/notes/2026-09-07-gas-at-0-07-gwei.html">
+          <time datetime="2026-09-07">7 sep 2026</time>
+          <span>
+            <span class="t">0.07 gwei. what an empty mainnet costs</span>
+            <span class="d" style="display:block">base fee at the floor, tvl still on L1, greed at 71 while the price goes nowhere.</span>
+            <span class="m" style="display:block">4 min read</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="scripts" aria-labelledby="scripts-h">
+    <div class="sec-head"><h2 id="scripts-h">scripts</h2><a href="https://github.com/alinaschanz" rel="me noopener">github.com/alinaschanz ↗</a></div>
+    <pre class="term" aria-label="sample output of daily_card.py"><span class="cmd">python daily_card.py</span>
+<span class="dim">-- 2026-09-07T22:17+00:00 --</span>
+btc       $79,139  <span class="down">-0.7%</span> 24h
+eth        $2,488  <span class="down">-0.4%</span> 24h
+sol          $104  <span class="down">-1.4%</span> 24h
+gas  base 0.0483 gwei  blob 0.00271 gwei  <span class="dim">(block 25928407)</span>
+f&amp;g  71 greed  <span class="dim">(week ago 62)</span>
+dom  btc 59.1%
+tvl  ethereum $49.6b / solana $5.9b / bsc $5.7b / base $5.6b / tron $5.5b</pre>
+    <p class="term-cap">that is <a href="https://github.com/alinaschanz/onchain-notes" rel="noopener">onchain-notes</a>: <code>daily_card.py</code>, the numbers i look at before posting anything, and <code>gas_now.py</code>, what a transfer or a swap costs on mainnet right now, in cents. the same idea, grown into small packages: <a href="https://github.com/alinaschanz/gasweek" rel="noopener">gasweek</a> (when is ethereum cheapest, hour by hour, with a chart that redraws itself every night), <a href="https://github.com/alinaschanz/bigmoves" rel="noopener">bigmoves</a> (large stablecoin, weth and wbtc transfers with exchange labels), <a href="https://github.com/alinaschanz/stablepeg" rel="noopener">stablepeg</a> (are the stablecoins still a dollar, read from uniswap and curve) and <a href="https://github.com/alinaschanz/ens-lookup" rel="noopener">ens-lookup</a> (names to addresses and back). python 3.10+, standard library, public endpoints, no keys.</p>
+  </section>
+
+  <section aria-labelledby="now-h">
+    <div class="sec-head"><h2 id="now-h">now</h2></div>
+    <div class="now">
+      <div class="card">
+        <p>reading more than trading this week. berlin, september, the spree is still warm enough to sit next to. gas is so cheap that i keep refreshing it like a weather app.</p>
+        <div class="when">updated 7 sep 2026</div>
+      </div>
+      <div class="stack">
+        <a href="https://x.com/alinaschanz" rel="me noopener"><span>x</span><span>@alinaschanz</span></a>
+        <a href="https://github.com/alinaschanz" rel="me noopener"><span>github</span><span>alinaschanz</span></a>
+        <a href="mailto:alinaschanz@proton.me"><span>mail</span><span>alinaschanz@proton.me</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 alina schanz · berlin · not financial advice, ever.</span>
+    <nav aria-label="footer">
+      <a href="/notes/">notes</a>
+      <a href="/feed.xml">rss</a>
+      <a href="https://x.com/alinaschanz" rel="me noopener">x</a>
+      <a href="https://github.com/alinaschanz" rel="me noopener">github</a>
+      <a href="mailto:alinaschanz@proton.me">mail</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/live.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>alina schanz — notes</title>
+  <subtitle>longer notes on onchain data. numbers, not calls.</subtitle>
+  <link href="https://alinaschanz.life/feed.xml" rel="self"/>
+  <link href="https://alinaschanz.life/"/>
+  <id>https://alinaschanz.life/</id>
+  <updated>2026-09-07T21:30:00Z</updated>
+  <author><name>alina schanz</name><uri>https://alinaschanz.life/</uri></author>
+  <entry>
+    <title>0.07 gwei. what an empty mainnet costs</title>
+    <link href="https://alinaschanz.life/notes/2026-09-07-gas-at-0-07-gwei.html"/>
+    <id>https://alinaschanz.life/notes/2026-09-07-gas-at-0-07-gwei.html</id>
+    <published>2026-09-07T21:30:00Z</published>
+    <updated>2026-09-07T21:30:00Z</updated>
+    <summary>base fee at the floor, tvl still on L1, greed at 71 while the price goes nowhere.</summary>
+  </entry>
+</feed>
