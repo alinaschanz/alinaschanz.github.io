@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.coingecko.com https://api.exchange.coinbase.com https://api.kraken.com https://api.alternative.me https://ethereum-rpc.publicnode.com https://eth.drpc.org https://gateway.tenderly.co https://rpc.mevblocker.io https://api.open-meteo.com https://api.github.com https://raw.githubusercontent.com; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+<title>week 37 in numbers: gas by the hour, nine pegs, and $429m that never left — alina schanz</title>
+<meta name="description" content="the first weekly numbers from my own scripts: base fee by hour of day, the stablecoin pegs on uniswap and curve, and one hour of large transfers where the biggest move was a flash loan.">
+<meta name="author" content="alina schanz">
+<meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f11" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="alina schanz">
+<meta property="og:title" content="week 37 in numbers: gas by the hour, nine pegs, and $429m that never left — alina schanz">
+<meta property="og:description" content="the first weekly numbers from my own scripts: base fee by hour of day, the stablecoin pegs on uniswap and curve, and one hour of large transfers where the biggest move was a flash loan.">
+<meta property="og:url" content="https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html">
+<meta property="og:image" content="https://alinaschanz.life/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@alinaschanz">
+<meta name="twitter:creator" content="@alinaschanz">
+<meta name="twitter:image" content="https://alinaschanz.life/img/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/icon-192.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="alternate" type="application/atom+xml" title="alina schanz — notes" href="/feed.xml">
+<link rel="alternate" type="application/feed+json" title="alina schanz — notes" href="/feed.json">
+<link rel="me" href="https://x.com/alinaschanz">
+<link rel="me" href="https://github.com/alinaschanz">
+<link rel="me" href="mailto:hello@alinaschanz.life">
+<link rel="pgpkey" href="/pgp.txt">
+<link rel="author" href="/about/">
+<link rel="stylesheet" href="/style.css">
+<meta property="article:published_time" content="2026-09-08T12:10:00Z">
+<meta property="article:author" content="https://alinaschanz.life/about/">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "@id": "https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html#post", "mainEntityOfPage": "https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html", "url": "https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html", "headline": "week 37 in numbers: gas by the hour, nine pegs, and $429m that never left", "description": "base fee by hour of day, nine stablecoin pegs, and one hour of large transfers where the biggest move was a flash loan.", "datePublished": "2026-09-08T12:10:00Z", "dateModified": "2026-09-08T12:10:00Z", "inLanguage": "en", "image": "https://alinaschanz.life/img/og.png", "author": {"@id": "https://alinaschanz.life/#me"}, "publisher": {"@id": "https://alinaschanz.life/#me"}, "isPartOf": {"@id": "https://alinaschanz.life/notes/#blog"}, "keywords": ["ethereum", "gas", "base fee", "stablecoins", "uniswap", "curve", "flash loans", "weekly"]}, {"@type": "Person", "@id": "https://alinaschanz.life/#me", "name": "Alina Schanz", "url": "https://alinaschanz.life/", "image": "https://alinaschanz.life/img/avatar.jpg", "jobTitle": "Onchain data analyst", "address": {"@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE"}, "email": "mailto:hello@alinaschanz.life", "sameAs": ["https://x.com/alinaschanz", "https://github.com/alinaschanz"], "knowsAbout": ["Ethereum", "Bitcoin", "onchain data", "gas fees", "stablecoins", "ENS"], "identifier": {"@type": "PropertyValue", "propertyID": "OpenPGP fingerprint", "value": "17BA4C393451A56B37B8EDBBF1A6474B431DF3AB"}}]}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">skip to content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="alina schanz, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="var(--accent)"/><path d="M12 42 L22 28 L30 36 L38 22 L46 30 L52 20" fill="none" stroke="var(--accent-ink)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="52" cy="20" r="4" fill="var(--accent-ink)"/></svg>
+      alina schanz
+    </a>
+    <nav aria-label="main">
+      <ul class="menu">
+        <li><a href="/notes/" aria-current="page">notes</a></li>
+        <li><a href="/about/">about</a></li>
+        <li><a class="hide-sm" href="/scripts/">scripts</a></li>
+        <li><a class="hide-sm" href="/data/">data</a></li>
+        <li><a class="ext" href="https://x.com/alinaschanz" rel="me noopener">x</a></li>
+        <li><a class="ext" href="https://github.com/alinaschanz" rel="me noopener">github</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+<article class="article">
+  <div class="crumbs"><a href="/">home</a> / <a href="/notes/">notes</a></div>
+  <h1>week 37 in numbers: gas by the hour, nine pegs, and $429m that never left</h1>
+  <div class="meta">
+    <time datetime="2026-09-08">8 september 2026</time><span class="dot"></span>
+    <span>berlin</span><span class="dot"></span>
+    <span>5 min read</span>
+  </div>
+
+  <div class="prose">
+    <p class="lede">a new habit: once a week, the numbers, from my own scripts, with the commands next to them so anyone can rerun the week and tell me where i am wrong. week 37, which for me ends on a tuesday morning with a coffee. three tools, one public node, no keys.</p>
+
+    <h2>gas, by the hour</h2>
+    <p><a href="https://github.com/alinaschanz/gasweek" rel="noopener">gasweek</a> pulled 50,400 blocks, a week to the block (25,881,970 to 25,932,369), in about two minutes. base fee of the next block, in gwei:</p>
+
+    <div class="data-wrap"><table class="data">
+      <tr><td>min · p25 · median</td><td>0.029 · 0.050 · 0.071</td></tr>
+      <tr><td>p75 · p90 · max</td><td>0.119 · 0.202 · 2.11</td></tr>
+      <tr><td>blocks, on average</td><td>50.6% full</td></tr>
+      <tr><td>blob base fee, median</td><td>0.0042 gwei</td></tr>
+      <tr><td>cheapest hour (berlin)</td><td>01:00 · 0.047 gwei</td></tr>
+      <tr><td>priciest hour (berlin)</td><td>17:00 · 0.197 gwei</td></tr>
+    </table></div>
+
+    <figure>
+      <img src="/img/notes/2026-09-08-week-37-in-numbers.svg" width="960" height="520" alt="ethereum base fee over the last seven days: a log-scale line of 30 minute medians with a p25 to p75 band, and the medians by hour of day as bars" loading="lazy">
+      <figcaption>the chart gasweek writes with <code>--svg</code>. log scale; the band is p25 to p75 of each half hour.</figcaption>
+    </figure>
+
+    <p>the shape by hour of day is the same one i see every week: a factor of four between the night and the american morning. by weekday, saturday and sunday sit at 0.055 to 0.057 gwei, wednesday at 0.107. if a transaction can wait, it should wait for a weekend night; if it cannot, it still costs less than a coffee. the spike to 2.1 gwei lasted a few blocks and is the only time the fee market woke up all week.</p>
+
+    <h2>nine pegs</h2>
+    <p><a href="https://github.com/alinaschanz/stablepeg" rel="noopener">stablepeg</a> at block 25,932,370 (11:32 utc): the uniswap v3 spot price against usdc, a short twap from the pool's own observations, and coingecko next to it.</p>
+
+    <div class="data-wrap"><table class="data">
+      <tr><th>coin</th><th>spot</th><th>twap</th><th>coingecko</th></tr>
+      <tr><td>usdt</td><td>0.99986</td><td>0.99990</td><td>0.99957</td></tr>
+      <tr><td>dai</td><td>1.00000</td><td>0.99990</td><td>0.99993</td></tr>
+      <tr><td>usde</td><td>0.99986</td><td>0.99980</td><td>0.99967</td></tr>
+      <tr><td>pyusd</td><td>1.00005</td><td>1.00000</td><td>0.99975</td></tr>
+      <tr><td>crvusd</td><td>1.00149</td><td>1.00150</td><td>0.99980</td></tr>
+      <tr><td>gho</td><td>0.99851</td><td>0.99850</td><td>0.99849</td></tr>
+      <tr><td>usds</td><td>0.99877</td><td>0.99880</td><td>0.99971</td></tr>
+      <tr><td>lusd</td><td>1.00970</td><td>1.00965</td><td>1.00900</td></tr>
+      <tr><td>frax</td><td>0.99194</td><td>0.99184</td><td>0.99161</td></tr>
+    </table></div>
+
+    <p>seven of nine within fifteen basis points of a dollar, which is the boring result i want from this table. two are not. lusd trades at a one percent premium, as it has for long stretches before. frax sits at 0.992 on the pool, on the twap and on coingecko, so this is not a thin pool lying, it is the price. the curve 3pool quote for 100,000 usdt into usdc was 99,975.51, a spread of 2.4 basis points; the pool's virtual price stands at 1.0398.</p>
+
+    <h2>one hour of large transfers</h2>
+    <p><a href="https://github.com/alinaschanz/bigmoves" rel="noopener">bigmoves</a> over the 300 blocks before 11:32 utc, about an hour, everything above $5m in usdt, usdc, dai, weth and wbtc: 76 lines. the biggest of them:</p>
+
+    <ul>
+      <li><strong>5,474 wbtc ($429m) and $92m usdc in one transaction</strong>, out of <code>0xbbbb…ffcb</code> and straight back into it: a flash loan through morpho blue, tagged <em>round trip</em> and folded into one line. four more round trips of $87m to $88m usdc in the same hour, same source.</li>
+      <li><strong>49.5m usdt into a bybit hot wallet</strong>, and 39.8m usdt into binance 14. those are the flows that mean something, and together they are a fifth of the flash loan.</li>
+      <li><strong>40m usdc hopping through three unlabeled wallets</strong>, one hop per transaction, a few minutes apart. no name on any of them.</li>
+    </ul>
+
+    <p>the lesson is the one i keep relearning. the biggest number in the hour was not a move at all: the money in a flash loan never leaves, it is borrowed and returned inside one block, and a naive scanner prints it as $429m of bitcoin changing hands. bigmoves folds the two legs since last week. morpho blue is not in my label list yet, and only 16 of the 76 lines had a name on at least one side, which says how short that list still is. the next label with a source is that one.</p>
+
+    <h2>rerun it</h2>
+    <pre><code>gasweek --tz +2 --json --svg week.svg
+stablepeg --json
+bigmoves --blocks 300 --min-usd 5000000 --json</code></pre>
+    <p>python 3.10+, standard library, public rpcs. numbers from a public node drift a little between runs, a block later or a different endpoint; a different picture would be a bug, and i would like to hear about it.</p>
+
+    <p class="fine">not financial advice. a girl in berlin with three scripts and a public node. the scripts are <a href="https://github.com/alinaschanz/gasweek" rel="noopener">gasweek</a>, <a href="https://github.com/alinaschanz/stablepeg" rel="noopener">stablepeg</a> and <a href="https://github.com/alinaschanz/bigmoves" rel="noopener">bigmoves</a>.</p>
+  </div>
+
+  <div class="share">
+    <span class="lbl">share</span>
+    <a class="btn" href="https://x.com/intent/post?text=week%2037%20in%20numbers%3A%20gas%20by%20the%20hour%2C%20nine%20pegs%2C%20and%20%24429m%20that%20never%20left%20%E2%80%94%20%40alinaschanz&url=https%3A%2F%2Falinaschanz.life%2Fnotes%2F2026-09-08-week-37-in-numbers.html" rel="noopener">post on x</a>
+    <a class="btn" href="/notes/">all notes</a>
+  </div>
+
+  <div class="author">
+    <img src="/img/avatar-160.jpg" width="52" height="52" alt="">
+    <div><b>alina schanz</b><span>onchain data, berlin. short version on <a href="https://x.com/alinaschanz" rel="me noopener">x</a>, scripts on <a href="https://github.com/alinaschanz" rel="me noopener">github</a>.</span></div>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <h4>alina schanz</h4>
+      <p>onchain data, notes and small scripts. berlin.</p>
+      <p class="fine">© 2026 · not financial advice, ever · no cookies, no analytics, no trackers.<br>last update 8 sep 2026 · <a href="/changelog/">changelog</a> · <a href="/humans.txt">humans.txt</a></p>
+    </div>
+    <div>
+      <h4>around</h4>
+      <ul>
+        <li><a href="/">home</a></li>
+        <li><a href="/notes/">notes</a></li>
+        <li><a href="/about/">about</a></li>
+        <li><a href="/scripts/">scripts</a></li>
+        <li><a href="/data/">data</a></li>
+        <li><a href="/methods/">methods</a></li>
+        <li><a href="/now/">now</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>trust</h4>
+      <ul>
+        <li><a href="/verify/">is this really me?</a></li>
+        <li><a href="/privacy/">privacy</a></li>
+        <li><a href="/.well-known/security.txt">security.txt</a></li>
+        <li><a href="/pgp.txt">pgp key · 17BA…F3AB</a></li>
+        <li><a href="/feed.xml">rss</a> · <a href="/feed.json">json feed</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>elsewhere</h4>
+      <ul>
+        <li><a href="https://x.com/alinaschanz" rel="me noopener">x · @alinaschanz</a></li>
+        <li><a href="https://github.com/alinaschanz" rel="me noopener">github · alinaschanz</a></li>
+        <li><a href="mailto:hello@alinaschanz.life">hello@alinaschanz.life</a></li>
+        <li><a href="https://github.com/alinaschanz/alinaschanz.github.io" rel="noopener">source of this site</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

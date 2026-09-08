@@ -16,6 +16,21 @@
   ],
   "items": [
     {
+      "id": "https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html",
+      "url": "https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html",
+      "title": "week 37 in numbers: gas by the hour, nine pegs, and $429m that never left",
+      "summary": "base fee by hour of day, nine stablecoin pegs, and one hour of large transfers where the biggest move was a flash loan.",
+      "date_published": "2026-09-08T12:10:00Z",
+      "language": "en",
+      "tags": [
+        "ethereum",
+        "gas",
+        "stablecoins",
+        "flash loans",
+        "weekly"
+      ]
+    },
+    {
       "id": "https://alinaschanz.life/notes/2026-09-07-gas-at-0-07-gwei.html",
       "url": "https://alinaschanz.life/notes/2026-09-07-gas-at-0-07-gwei.html",
       "title": "0.07 gwei. what an empty mainnet costs",

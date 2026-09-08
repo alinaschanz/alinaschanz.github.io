@@ -5,8 +5,16 @@
   <link href="https://alinaschanz.life/feed.xml" rel="self"/>
   <link href="https://alinaschanz.life/"/>
   <id>https://alinaschanz.life/</id>
-  <updated>2026-09-07T21:30:00Z</updated>
+  <updated>2026-09-08T12:10:00Z</updated>
   <author><name>alina schanz</name><uri>https://alinaschanz.life/</uri></author>
+  <entry>
+    <title>week 37 in numbers: gas by the hour, nine pegs, and $429m that never left</title>
+    <link href="https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html"/>
+    <id>https://alinaschanz.life/notes/2026-09-08-week-37-in-numbers.html</id>
+    <published>2026-09-08T12:10:00Z</published>
+    <updated>2026-09-08T12:10:00Z</updated>
+    <summary>base fee by hour of day, nine stablecoin pegs, and one hour of large transfers where the biggest move was a flash loan.</summary>
+  </entry>
   <entry>
     <title>0.07 gwei. what an empty mainnet costs</title>
     <link href="https://alinaschanz.life/notes/2026-09-07-gas-at-0-07-gwei.html"/>
