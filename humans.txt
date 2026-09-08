@@ -11,7 +11,7 @@
   last update: 2026-09-08
   language: english
   standards: html5, css3, a little javascript, json-ld, atom + json feed, security.txt, web key directory, opentimestamps, ariadne proofs (keyoxide), indexnow
-  components: none. hand-written.
+  components: none. plain html.
   fonts: fraunces, inter, jetbrains mono. served from here.
   hosting: github pages behind cloudflare
   analytics: none
