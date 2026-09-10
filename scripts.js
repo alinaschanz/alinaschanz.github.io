@@ -1,6 +1,7 @@
 /* repository status from the public github api: last push, open issues, stars, the last
-   ci run, and the latest commits. sixty anonymous requests an hour per ip, so this page
-   makes seven at most and says so when it hits the wall. */
+   ci run, and the latest commits. sixty anonymous requests an hour per ip; this page makes
+   fourteen at most (the list, one ci run per card, the events, three commits) and says so
+   when it hits the wall. */
 (function () {
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
